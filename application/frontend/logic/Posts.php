@@ -33,6 +33,9 @@ class Posts extends FrontendBase
 		$result=self::getOneObject(["id"=>$id]);
 		return $result?$result->toArray():"";
 	}
+	public function getTpfPosts($data){
+		return self::getList($data);
+	}
 	public function updateView($id){
 		Core::loadModel("Posts")->where(["id"=>$id])->setInc("view");
 	}
