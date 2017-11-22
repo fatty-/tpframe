@@ -71,51 +71,62 @@
 			<li class="active"><a href="{:url('slide/edit')}">编辑幻灯片</a></li>
 		</ul>
 		<form method="post" class="form-horizontal js-ajax-form" action="{:url('Slide/edit')}">
-		<input type="hidden" name="slide_id" value="{$edit_slide.slide_id}"/>
+		<input type="hidden" name="slide_id" value="{$edit_slide[0]->slide_id}"/>
 			<fieldset>
 				<div class="control-group">
-					<label class="control-label">分类名称</label>
+					<label class="control-label">分类</label>
 					<div class="controls">
-						<input type="text" name="slide_name" value="{$edit_slide.slide_name}">
+						<select name="slide_cid">
+							{foreach name="categorys" id="vo"}
+							<option value="{$vo.cid}" {eq name="vo.cid" value="$edit_slide[0]->slide_cid"}selected="selected"{/eq}>{$vo.cat_name}</option>
+							{/foreach}
+						</select>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">标题</label>
+					<div class="controls">
+						<input type="text" name="slide_name" value="{$edit_slide[0]->slide_name}">
 						<span class="form-required">*</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label">链接</label>
 					<div class="controls">
-						<input type="text" name="slide_url" value="{$edit_slide.slide_url}">
+						<input type="text" name="slide_url" value="{$edit_slide[0]->slide_url}">
 						<span class="form-required">*</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label">缩略图</label>
 					<div class="controls">
-						<input class="ke-input-text" type="text" id="url" value="{$edit_slide.slide_pic}" name='slide_pic' readonly="readonly" /> 
+						<input class="ke-input-text" type="text" id="url" value="{$edit_slide[0]->slide_pic}" name='slide_pic' readonly="readonly" /> 
 						<input type="button" id="uploadButton" value="上传缩略图" />
-						<img src="{$edit_slide.slide_pic}" style="width:50px;height:50px;" id="show_thumb"/>
+						<img src="{$edit_slide[0]->slide_pic}" style="width:50px;height:50px;" id="show_thumb"/>
 						<span class="form-required">*</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label">幻灯片内容</label>
 					<div class="controls">
-						<textarea name="slide_content" rows="5" cols="57">{$edit_slide.slide_content}</textarea>
+						<textarea name="slide_content" rows="5" cols="57">{$edit_slide[0]->slide_content}</textarea>
 						<span class="form-required">*</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label">描述</label>
 					<div class="controls">
-						<textarea name="slide_des" rows="5" cols="57">{$edit_slide.slide_des}</textarea>
+						<textarea name="slide_des" rows="5" cols="57">{$edit_slide[0]->slide_des}</textarea>
 					</div>
 				</div>
 			</fieldset>
 			<div class="form-actions">
-				<button class="btn btn-primary js-ajax-submit" type="submit">修改</button>
+				<button class="btn btn-primary" type="submit">修改</button>
 				<a class="btn" href="javascript:history.back(-1);">取消</a>
 			</div>
 		</form>
 	</div>
-	<script src="__PUBLIC__/js/common.js"></script>
+	<script src="__THEMES__/js/common.js"></script>
 </body>
 </html>

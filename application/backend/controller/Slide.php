@@ -23,9 +23,7 @@ class Slide extends AdminBase
         
         IS_POST && $this->jump(Core::loadModel($this->name)->editSlide($this->param));
         $list = Core::loadModel($this->name)->getSlideList($this->param);
-        foreach($list as $k=>$v){
-            $list = $v;
-        }
+        $this->assign('categorys', Core::loadModel("SlideCat")->getSlideCatList());
         $this->assign('edit_slide',$list);
         return $this->fetch("edit");
     }
@@ -42,10 +40,10 @@ class Slide extends AdminBase
             // 成功上传后 获取上传信息
            $file_url = '/data/uploads/'.date("Ymd",time()).'/'.$info->getFilename();
            
-           echo json_encode(array('error' => 0, 'url' => $file_url));
+           echo json_encode(array('error' => 0, 'url' => $file_url));die;
         }else{
             // 上传失败获取错误信息
-          echo  $file->getError();
+          echo  $file->getError();die;
         }
     }
 }

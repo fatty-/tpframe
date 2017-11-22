@@ -6,7 +6,7 @@ use \tpfcore\Core;
  */
 class SlideCat extends AdminServiceBase
 {
-    public function getSlideCatList($where){
+    public function getSlideCatList($where=[]){
         return Core::loadModel($this->name)->getSlideCatList($where);
     }
     public function addSlideCat($data){
