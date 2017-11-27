@@ -277,15 +277,11 @@ class ModelBase extends Model
                     "data"  =>null
         ]; 
 
+        $param=StringHelper::parseStrTable($param);
+
         $params=array_merge($defaultParam,$param);
 
         extract($params);
-
-        $where=StringHelper::parseStrTable($where);
-        
-        $field=StringHelper::parseStrTable($field);
- 
-        $join=StringHelper::parseStrTable($join);
 
         $paginate['simple'] = empty($paginate['simple']) ? false   : $paginate['simple'];
         
