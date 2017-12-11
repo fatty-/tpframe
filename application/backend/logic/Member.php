@@ -58,6 +58,7 @@ class Member extends AdminBase
         }
         $result=Core::loadModel($this->name)->saveObject($data);
 		if($result){
+			$data['role_id'] && self::updateObject(['username'=>$data['username']],['privs'=>Core::loadModel("Role")->getColumnValue(["id"=>input("role_id")],"privs")]);
 			return [RESULT_SUCCESS, '操作成功', url('Member/admin')];
 		}else{
 			return [RESULT_ERROR, '操作失败', url('Member/admin')];
