@@ -7,7 +7,7 @@
 namespace app\common\controller;
 
 use think\Controller;
-
+use tpfcore\helpers\Json;
 /**
  * 系统通用控制器基类
  */
@@ -27,7 +27,6 @@ class ControllerBase extends Controller
      */
     protected function _initialize()
     {
-        
         // 初始化请求信息
         $this->initRequestInfo();
 
@@ -66,23 +65,47 @@ class ControllerBase extends Controller
     
     /**
      * 系统跳转
+     * array _data  里面包含1-4个值  分别为 status 状态  | message 消息 | url 链接 / data 数据
+     * 分页面跳转与ajax/app调用
+     * exam:
+        or
+        jump(['error','操作失败','Member/index',$data])
+        or
+        jump([40044,'用户未登录'])
+        or
+        jump([0,'登录成功',['token'=>'a46awfa1wf1aw6gawf']])
+        or
+        jump(40040,'操作非法',['token'=>'a46awfa1wf1aw6gawf'])
+
+        说明： 
+            页面跳转（web）   code为1表示成功      handle 为1表示pc       主要用于后台
+            ajax/api接口      code为0表示成功      handle 为0表示app      主要用于PC、微信、app、mobile
      */
-    final protected function jump($status = '', $message = '', $url = null, $data = '')
+    final protected function jump($_data = [], $handle=1)
     {
-        
-        is_array($status) && list($status, $message, $url) = $status;
+        if(!is_array($_data) || count($_data)>4) return null;
+
+        $default_data=[0,'',null,null];
+
+        list($status, $message, $url,$data)=$_data+$default_data;
         
         $success  = RESULT_SUCCESS;
         $error    = RESULT_ERROR;
         $redirect = RESULT_REDIRECT;
-        
-        // 分配跳转类型
-        switch ($status) {
 
-            case $success  : $this->$success($message, $url, $data);
-            case $error    : $this->$error($message, $url, $data);
-            case $redirect : $this->$redirect($url, $data);
-            default        : return $data;
+        // status为数字的情况
+        if(is_numeric($status)){
+
+            die(json_encode(['code'=>$status,"msg"=>$message,"data"=>$url]));
+
+        }else{
+            // 分配跳转类型
+            switch ($status) {
+                case $success  :$this->$success($message, $url, $data);
+                case $error    :$this->$error($message, $url, $data);
+                case $redirect :$this->$redirect($url, $data);
+                default        :return $data;
+            }
         }
     }
 }
