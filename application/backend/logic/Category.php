@@ -2,17 +2,7 @@
 // +----------------------------------------------------------------------
 // | Author: yaoyihong <510974211@qq.com>
 // +----------------------------------------------------------------------
-/**
- * ============================================================================
- * 版权所有 2017-2077 tpframe工作室，并保留所有权利。
- * @link http://www.tpframe.com/
- * @copyright Copyright (c) 2017 TPFrame Software LLC
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！未经本公司授权您只能在不用于商业目的的前提下对程序代码进行修改和使用；
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * 分类逻辑
- */
+
 namespace app\backend\logic;
 use \tpfcore\util\Tree;
 use \tpfcore\Core;
@@ -57,10 +47,10 @@ class Category extends AdminBase
        
         $tree->init($result);
         $str = "<tr id='node-\$id' \$parentid_node>
-					<td style='padding-left:20px;'><span style='padding-left: 20px' class='expander'></span><input name='listorders[\$id]' type='text' size='3' value='\$sort' class='input input-order'></td>
 					<td>\$id</td>
 					<td>\$spacer\$title</td>
 					<td>\$isnav</td>
+					<td style='padding-left:20px;'><input name='listorders[\$id]' data='Category|sort|id|\$id' type='text' size='3' value='\$sort' class='input input-order ajax'></td>
 				    <td>\$display</td>
 					<td>\$manage</td>
 				</tr>";

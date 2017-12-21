@@ -24,8 +24,7 @@ class Posts extends AdminBase
 	public function delPosts($data){
 		return self::saveObject(['isdelete'=>1],$data)?[RESULT_SUCCESS, '删除成功', url('Posts/index')]:[RESULT_ERROR, '删除失败', url('Posts/index')];
 	}
-	public function getPostsList($where = [], $field = true, $order = '', $is_paginate = true){
-		$paginate_data = $is_paginate ? ['rows' => DB_LIST_ROWS] : false;
-		return self::getObject($where, $field, $order, $paginate_data);
+	public function getPostsList($data){
+		return self::getList($data);
 	}
 }

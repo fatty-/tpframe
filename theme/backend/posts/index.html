@@ -70,7 +70,7 @@
 					<tr>
 						<td>{$vo.id}</td>
 						<td>{$vo.title}</td>
-						<td>{$vo.cateid}</td>
+						<td>{$vo.ctitle}</td>
 						<td>{$vo.view}</td>
 						<td>{$vo.source}</td>
 						<td>
@@ -86,7 +86,7 @@
 							{if condition="$vo.istop eq 1"}置顶{/if}<br/>
 							{if condition="$vo.isrecommend eq 1"}推荐{/if}<br/>
 						</td>
-						<td>{$vo.type}</td>
+						<td>{eq name="vo.type" value="1"}文章列表{else/}图片列表{/eq}</td>
 						<td>
 							<a href="{:url('Posts/edit',['parentid'=>$vo['cateid'],'cid'=>$vo['id']])}">修改</a>|
 							<a href="{:url('Posts/del',['id'=>$vo['id']])}" class="js-ajax-delete">删除</a>
@@ -96,7 +96,9 @@
 					{/empty}
 				</tbody>
 			</table>
+			<div class="pagination text-center">{$list->render()}</div>
 		</form>
 	</div>
+<script src="__THEMES__/js/common.js"></script>
 </body>
 </html>

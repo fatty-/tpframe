@@ -9,7 +9,15 @@ class Posts extends AdminBase
     public function index()
     {
         return $this->fetch("index",[
-            'list'=>Core::loadModel($this->name)->getPostsList(['isdelete'=>0])
+            'list'=>Core::loadModel($this->name)->getPostsList( 
+                [
+                    "where"=>['isdelete'=>0], 
+                    "field"=>"__POSTS__.*,c.title ctitle", 
+                    "order"=>"", 
+                    "paginate"=>["rows"=>DB_LIST_ROWS],
+                    "join"      =>['join' => "__CATEGORY__ c", 'condition' => "__POSTS__.cateid=c.id", 'type' => 'left'],
+                ]
+            )
         ]);
     }
     public function edit(){

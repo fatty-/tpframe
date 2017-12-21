@@ -5,13 +5,6 @@
 
 namespace app\backend\model;
 
-/**
- * Setting基础模型
- */
-class Setting extends AdminBase
+class Links extends AdminBase
 {
-    protected function setOptionsAttr($value)
-    {
-        return \tpfcore\helpers\Json::encode($value);
-    }
 }

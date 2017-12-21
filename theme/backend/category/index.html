@@ -56,10 +56,10 @@ use tpfcore\Core;
 			<table class="table table-hover table-bordered table-list treeTable" id="Categorys-table">
 				<thead>
 					<tr>
-						<th width="80">排序</th>
 						<th width="50">ID</th>
 						<th>菜单名称</th>
 						<th>是否导航显示</th>
+						<th width="80">排序</th>
 						<th width="80">状态</th>
 						<th width="180">操作</th>
 					</tr>
@@ -76,6 +76,29 @@ use tpfcore\Core;
 		<!-- {:Core::hook('ArticleEditor',['name'=>'content'])} -->
 	</div>
 	<script src="__THEMES__/js/common.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		    $(".ajax").each(function(){
+		        var newval;
+		        $(this).change(function(){
+		            newval=$(this).val();
+		            var data=$(this).attr("data");
+		            var dataArr=data.split("|"),table=dataArr[0],colum=dataArr[1],key=dataArr[2],keyval=dataArr[3];
+		            $.ajax({
+		                type:"post",
+		                dataType:"json",
+		                data:{"table":table,"colum":colum,"columval":newval,"key":key,"keyval":keyval},
+		                url:"{:url('"+table+"/ajaxdata')}",
+		                success:function(data){
+		                	if(data.code!=0){
+		                		alert(msg);
+		                	}
+		                }
+		            });
+		        });
+		    });
+		});
+	</script>
 	</body>
 
 </html>
