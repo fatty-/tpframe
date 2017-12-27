@@ -19,7 +19,6 @@ class User extends ControllerBase
 	}
 
 	public function loginout(){
-		list($status, $message, $url) = Core::loadModel($this->name)->logout();
-        $this->jump($status, $message, $url);
+		$this->jump(Core::loadModel($this->name)->logout());
 	}
 }

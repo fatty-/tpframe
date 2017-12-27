@@ -193,7 +193,7 @@ class InitBase
         define('UPLOAD_PATH', ROOT_PATH . 'data/uploads/');
         
         // 网站
-        define('SITE_PATH', $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_ADDR']);
+        define('SITE_PATH', $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']);
 
         // 文件上传目录相对路径
         define('UPLOAD_PATH_RELATIVE', SITE_PATH.'/data/uploads/');

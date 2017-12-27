@@ -376,3 +376,14 @@ CREATE TABLE `tpf_user` (
   `role_id` int(11) DEFAULT '0' COMMENT '角色id',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Table structure for tpf_role
+-- ----------------------------
+DROP TABLE IF EXISTS `tpf_role`;
+CREATE TABLE `tpf_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(200) DEFAULT NULL COMMENT '角色名',
+  `privs` varchar(255) DEFAULT NULL COMMENT '权限列表',
+  `role_describe` varchar(255) DEFAULT NULL COMMENT '权限描述',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员角色表';
