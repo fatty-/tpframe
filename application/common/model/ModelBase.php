@@ -71,9 +71,11 @@ class ModelBase extends Model
      */
     final protected function addObject($data = [], $getLastInsID = true,$sequence = null)
     { 
-
-        return $this->allowField(true)->isUpdate(false)->save($data, $where=[], $sequence);
-
+        $result= $this->allowField(true)->isUpdate(false)->save($data, $where=[], $sequence);
+        if($getLastInsID){
+            return $this->getQuery()->getLastInsID($sequence);
+        }
+        return $result;
     }
     
     /**
@@ -205,6 +207,10 @@ class ModelBase extends Model
  
         $join=StringHelper::parseStrTable($join);
 
+        $order=StringHelper::parseStrTable($order);
+
+        $group=StringHelper::parseStrTable($group);
+
         $paginate['simple'] = empty($paginate['simple']) ? false   : $paginate['simple'];
         
         $paginate['config'] = empty($paginate['config']) ? []      : $paginate['config'];
@@ -276,7 +282,6 @@ class ModelBase extends Model
                     "limit" =>null,
                     "data"  =>null
         ]; 
-
         $param=StringHelper::parseStrTable($param);
 
         $params=array_merge($defaultParam,$param);
@@ -315,7 +320,9 @@ class ModelBase extends Model
         
         self::$ob_query = self::$ob_query->field($field);
         
-        !empty($group['group'])   && self::$ob_query = self::$ob_query->group($group['group'], $group['having']);
+        !empty($group['group'])   && self::$ob_query = self::$ob_query->group($group['group']);
+
+        !empty($group['having'])  && self::$ob_query = self::$ob_query->having($group['having']);
     
         !empty($limit)            && self::$ob_query = self::$ob_query->limit($limit);
         
