@@ -24,8 +24,9 @@ class Posts extends AdminBase
         IS_POST && $this->jump(Core::loadModel($this->name)->savePosts($this->post));
         return $this->fetch("edit",[
             'categorys'=>Core::loadModel("Category")->getCategoryList("add",$this->param),
-            'list'=>Core::loadModel($this->name)->getPostsList(['id'=>$this->param['cid']]),
-            'id'=>$this->param['cid']
+            'list'=>Core::loadModel($this->name)->getPostsList(["where"=>['id'=>$this->param['cid']]]),
+            'id'=>$this->param['cid'],
+            'parentid'=>$this->param['parentid']
         ]);
     }
     public function add()

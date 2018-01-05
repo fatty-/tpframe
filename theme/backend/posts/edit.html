@@ -73,7 +73,8 @@
 		<div class="wrap">
 		<ul class="nav nav-tabs">
 			<li><a href="{:url('Posts/index')}">文章管理</a></li>
-			<li class="active"><a href="{:url('Posts/add')}">添加文章</a></li>
+			<li><a href="{:url('Posts/add')}">添加文章</a></li>
+			<li class="active"><a href="{:url('Posts/edit',['cid'=>$id,'parentid'=>$parentid])}">编辑文章</a></li>
 		</ul>
 		<form method="post" class="form-horizontal js-ajax-form" action="">
 			<input type="hidden" name="id" value="{$list[0]->id}" />
