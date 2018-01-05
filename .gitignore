@@ -1,4 +1,3 @@
 .idea
-composer
 data/install.lock
 application/extra/database.php
