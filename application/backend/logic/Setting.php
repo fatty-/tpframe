@@ -25,7 +25,7 @@ class Setting extends AdminBase
 
 		$update_config=['DEFAULT_THEME'=>$data['options']['site_tpl'],'HTML_CACHE_ON'=>isset($data['options']['html_cache_on'])?true:false];
 
-		Config::updateConfig("./data/conf/config.php",$update_config);
+		Config::updateConfig(APP_PATH."extra/config.php",$update_config);
 	
 		$result=Core::loadModel($this->name)->saveObject($data);
 		if($result){

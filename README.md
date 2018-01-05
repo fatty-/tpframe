@@ -83,7 +83,7 @@ www  WEB部署目录（或者子目录）
 
 ## 自动安装
 系统运行后会自动安装
-重新安装的用户,请手动删除`data/install.lock`文件和'data/conf/database.php'文件
+重新安装的用户,请手动删除`data/install.lock`文件和'application/extra/database.php'文件
 
 ## 命名规范
 

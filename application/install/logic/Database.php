@@ -148,10 +148,11 @@ class Database extends LogicBase
 				$prefix=$data['dbprefix'];
 				$tpframe_version=\think\Config::get("TPFRAME_VERSION");
 		        $conf="<?php
+\$local_database=require('database-local.php');
 /**
  * 配置文件
  */
-return array(
+\$database=array(
     'type' => 'mysql',
     'hostname' => '{$hostname}',
     'database' => '{$database}',
@@ -162,14 +163,16 @@ return array(
     
     'DATA_ENCRYPT_KEY'	=> '$data_encrypt_key',
     'TPFRAME_VERSION'	=> '$tpframe_version',
-);";
+);
+return array_merge(\$database,\$local_database);";
 		        //写入应用配置文件
-		        if(file_put_contents('data/conf/database.php', $conf)){
+		        if(file_put_contents(APP_PATH.'extra/database.php', $conf)){
 		            $this->show_msg('配置文件写入成功');
 		        } else {
 		            $this->show_msg('配置文件写入失败！', 'error');
 		        }
 	    	}catch(\Exception $e){
+	    		echo $e->getMessage();
 	    		$this->show_msg("配置文件写入失败！", 'error');
 				throw new \Exception('配置文件写入失败！'); 
 	    	}

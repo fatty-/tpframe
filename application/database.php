@@ -8,9 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-$database=file_exists("data/conf/database.php")?include "data/conf/database.php":[];
-$database_local=file_exists("data/conf/database-local.php")?include "data/conf/database-local.php":[];
-$base_config = [
+return [
     // 连接dsn
     'dsn'            => '',
     // 数据库连接参数
@@ -36,4 +34,3 @@ $base_config = [
     // 是否需要进行SQL性能分析
     'sql_explain'    => false,
 ];
-return array_merge($base_config,$database,$database_local);

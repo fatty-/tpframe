@@ -24,8 +24,8 @@ class Index extends ControllerBase {
 
     public function step2(){
         try{
-            if(file_exists('./data/conf/database.php')){
-                unlink('./data/conf/database.php');
+            if(file_exists(APP_PATH.'extra/database.php')){
+                unlink(APP_PATH.'extra/database.php');
             }
         }catch(\Exception $e){
             echo $e->getMessage();
@@ -108,7 +108,6 @@ class Index extends ControllerBase {
 
         $folders = array(
             'data',
-            'data/conf',
             'data/assets',
             'data/uploads',
         );

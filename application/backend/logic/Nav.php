@@ -32,20 +32,21 @@ class Nav extends AdminBase
 	}
 	public function getNavList($where=[]){
 		$result=self::getObject($where,"*","sort ASC");
+		$new_result=[];
 		foreach ($result as $key => $value) {
-			$result[$key]=$value->toArray();
+			$new_result[$key]=$value->toArray();
 		}
         $tree = new Tree();
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         
-        foreach ($result as $n=> $r) {
-        	$result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . ' collapsed"' : 'class="expanded"';
-        	$result[$n]['manage'] = '<a href="' . url("Nav/add", ["parentid" => $r['id']]) . '">添加菜单</a> | <a href="' . url("Nav/edit", ["id" => $r['id']]) . '">编辑菜单</a> | <a href="' . url("Nav/del", ["id" => $r['id']]). '">删除菜单</a> ';
-            $result[$n]['display'] = $r['display'] ? "显示" : "隐藏";
+        foreach ($new_result as $n=> $r) {
+        	$new_result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . ' collapsed"' : 'class="expanded"';
+        	$new_result[$n]['manage'] = '<a href="' . url("Nav/add", ["parentid" => $r['id']]) . '">添加菜单</a> | <a href="' . url("Nav/edit", ["id" => $r['id']]) . '">编辑菜单</a> | <a href="' . url("Nav/del", ["id" => $r['id']]). '">删除菜单</a> ';
+            $new_result[$n]['display'] = $r['display'] ? "显示" : "隐藏";
         }
        
-        $tree->init($result);
+        $tree->init($new_result);
         $str = "<tr id='node-\$id' \$parentid_node>
 					<td style='padding-left:20px;'><span style='padding-left: 20px' class='expander'></span><input name='listorders[\$id]' type='text' size='3' value='\$sort' class='input input-order'></td>
 					<td>\$id</td>
@@ -64,13 +65,14 @@ class Nav extends AdminBase
 		}
 
 		$result=self::getObject([],"*","sort ASC");
+		$new_result=[];
 		foreach ($result as $key => $value) {
 			unset($result[0]);
-			$result[$value['id']]=$value->toArray();
+			$new_result[$value['id']]=$value->toArray();
 		}
 		
         $tree = new Tree();
-        $tree->init($result);
+        $tree->init($new_result);
         $str = "<option value='\$id' \$selected>\$spacer \$label</option>";
         $categorys = $tree->get_tree(0, $str,$parentid);
 		return $categorys;

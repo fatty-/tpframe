@@ -31,21 +31,23 @@ class Category extends AdminBase
 	}
 	public function getCategoryList(){
 		$result=self::getObject([],"*","sort ASC");
+		$new_result=[];
 		foreach ($result as $key => $value) {
-			$result[$key]=$value->toArray();
+			$new_result[$key]=$value->toArray();
 		}
 		$assets_path=Config::get("template")['view_path'].DS.'assets';
         $tree = new Tree();
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
-        foreach ($result as $n=> $r) {
-        	$result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . ' collapsed"' : 'class="expanded"';
-            $result[$n]['manage'] = '<a href="' . url("Category/add", ["parentid" => $r['id']]) . '">添加分类</a> | <a href="' . url("Category/edit", ["id" => $r['id']]) . '">编辑分类</a> | <a href="' . url("Category/del", ["id" => $r['id']]). '">删除分类</a> ';
-            $result[$n]['isnav'] = $r['isnav'] ?  '<img src="/theme/backend/assets/images/yes.gif"/>': '<img src="/theme/backend/assets/images/no.gif"/>';
-            $result[$n]['display'] = $r['display'] ? "显示" : "隐藏";
+        
+        foreach ($new_result as $n=> $r) {
+        	$new_result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . ' collapsed"' : 'class="expanded"';
+            $new_result[$n]['manage'] = '<a href="' . url("Category/add", ["parentid" => $r['id']]) . '">添加分类</a> | <a href="' . url("Category/edit", ["id" => $r['id']]) . '">编辑分类</a> | <a href="' . url("Category/del", ["id" => $r['id']]). '">删除分类</a> ';
+            $new_result[$n]['isnav'] = $r['isnav'] ?  '<img src="/theme/backend/assets/images/yes.gif"/>': '<img src="/theme/backend/assets/images/no.gif"/>';
+            $new_result[$n]['display'] = $r['display'] ? "显示" : "隐藏";
         }
        
-        $tree->init($result);
+        $tree->init($new_result);
         $str = "<tr id='node-\$id' \$parentid_node>
 					<td>\$id</td>
 					<td>\$spacer\$title</td>
@@ -67,13 +69,14 @@ class Category extends AdminBase
 			$parentid=$data['cid'];
 		}
 		$result=self::getObject([],"*","sort ASC");
+		$new_result=[];
 		foreach ($result as $key => $value) {
 			unset($result[0]);
-			$result[$value['id']]=$value->toArray();
+			$new_result[$value['id']]=$value->toArray();
 		}
 		
         $tree = new Tree();
-        $tree->init($result);
+        $tree->init($new_result);
         $str = "<option value='\$id' \$selected>\$spacer \$title</option>";
         $categorys = $tree->get_tree(0, $str,$parentid);
 		return $categorys;

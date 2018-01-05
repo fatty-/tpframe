@@ -14,5 +14,5 @@ return [
         'view_path'     =>  '.'.DS.'theme'.DS.'install'.DS,     //设置模板位置
         'tpl_cache'     =>  false
     ],
-    'TPFRAME_VERSION' => "TPFrame v1.00714",
+    'TPFRAME_VERSION' => "TPFrame v2.0.0105",
 ];

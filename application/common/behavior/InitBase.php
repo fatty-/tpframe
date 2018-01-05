@@ -28,7 +28,7 @@ class InitBase
         $this->initPathConst();
         
         // 初始化配置信息
-        @file_exists('data/conf/database.php') && $this->initConfig();
+        @file_exists(APP_PATH.'extra/database.php') && $this->initConfig();
         
         //$this->checkConfig();
 
@@ -36,7 +36,7 @@ class InitBase
         $this->initDbInfo();
         
         // 初始化缓存信息
-        @file_exists('data/conf/database.php') && $this->initCacheInfo();
+        @file_exists(APP_PATH.'extra/database.php') && $this->initCacheInfo();
         
         //初始化一些常量
         $this->initDefine();
@@ -49,20 +49,25 @@ class InitBase
      */
     private function checkInstall(){
         if(!preg_match('/(.*?)install(.*?)/', strtolower(request()->baseUrl()))){
-            if(!file_exists('data/install.lock') || !file_exists("data/conf/database.php")){
+            if(!file_exists('data/install.lock') || !file_exists(APP_PATH."extra/database.php")){
                 Header("Location:/install");
                 exit;
             }
         }else{
-            if(file_exists("data/install.lock") && file_exists("data/conf/database.php")){
+
+            if(file_exists("data/install.lock") && file_exists(APP_PATH."extra/database.php")){
 
                 Header("Location:/");exit;
 
             }
-            if((file_exists("data/install.lock") || file_exists("data/conf/database.php")) && !preg_match('/(.*?)install\/index\/step(.*?)/', strtolower(request()->baseUrl()))){
-
-                exit("请删除data/install.lock文件与data/conf/database.php文件后再重新安装");
-
+            if(!preg_match('/(.*?)step5(.*?)/', strtolower(request()->baseUrl()))){
+                if(file_exists("data/install.lock") || file_exists(APP_PATH."extra/database.php")){
+                    exit("请删除data/install.lock文件与".APP_PATH."extra/database.php文件后再重新安装");
+                }               
+            }else{
+                if(file_exists("data/install.lock") && !file_exists(APP_PATH."extra/database.php")){
+                    exit("请删除data/install.lock文件后再重新安装");
+                }   
             }
         }
         
@@ -155,14 +160,12 @@ class InitBase
         
         // 系统超级管理员ID
         define('ADMINISTRATOR_ID', 1);
-        
-        $runtime_config=file_exists(ROOT_PATH."data/conf/database.php")?include ROOT_PATH."data/conf/database.php":[];
 
         // 系统加密KEY
-        define('DATA_ENCRYPT_KEY', isset($runtime_config['DATA_ENCRYPT_KEY'])?$runtime_config['DATA_ENCRYPT_KEY']:'!hg&HW14*WF5^%$3NHK)EDh*h#@s(01w-Eftpframe@.com');
+        define('DATA_ENCRYPT_KEY', config('database.DATA_ENCRYPT_KEY')?config('database.DATA_ENCRYPT_KEY'):'!hg&HW14*WF5^%$3NHK)EDh*h#@s(01w-Eftpframe@.com');
 
         // 系统当前版本
-        define('TPFRAME_VERSION', isset($runtime_config['TPFRAME_VERSION'])?$runtime_config['TPFRAME_VERSION']:'TPFrame v1.0');
+        define('TPFRAME_VERSION', config('database.TPFRAME_VERSION')?config('database.TPFRAME_VERSION'):'TPFrame v1.0');
         
     }
     
@@ -219,17 +222,16 @@ class InitBase
             
            config($info['name'], $info['value']);
         }
-        $runtime_config=file_exists(ROOT_PATH."data/conf/config.php")?include ROOT_PATH."data/conf/config.php":[];
-        
-        define("FRONTEND_THEME",isset($runtime_config['DEFAULT_THEME'])?$runtime_config['DEFAULT_THEME']:"default");
 
-        define("HTML_CACHE_ON",isset($runtime_config['HTML_CACHE_ON'])?$runtime_config['HTML_CACHE_ON']:false);
+        define("FRONTEND_THEME",config('config.DEFAULT_THEME')?config('config.DEFAULT_THEME'):"default");
+
+        define("HTML_CACHE_ON",config('config.HTML_CACHE_ON')?config('config.HTML_CACHE_ON'):false);
     }
     /**
     * 检查配置文件是否完整
     */
     private function checkConfig(){
-        $core_config=['data/conf/config.php'];
+        $core_config=[APP_PATH."extra/config.php"];
         $config=[];
         foreach ($core_config as $key => $value) {
             if(!file_exists(ROOT_PATH.$value)){
