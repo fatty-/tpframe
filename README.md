@@ -1,6 +1,6 @@
+![](http://www.tpframe.com/data/assets/images/mark_logo.jpg) 
 TPFrame
 ===============
-
 TPFrame保持了ThinkPHP5原有的所有特性，在ThinkPHP动力驱动模式下做了进一步的开发，对CBD模式做了更深的强化，优化核心，减少依赖，为个人或企业建站提供高效、快速解决的方案，是你快速做在线成品、可自己扩展的首选利器，TPFrame的主要特性：
 
  + 网站目录结构清晰、合理
@@ -40,6 +40,7 @@ www  WEB部署目录（或者子目录）
 │  ├─common             公共模块目录（可以更改）
 │  ├─backend            后台模块目录（可以更改）
 │  ├─frontend           前台模块目录（可以更改）
+│  ├─extra           	配置文件目录
 │  ├─install            安装模块目录（安装后建议删除）
 │  ├─module_name        模块目录（可以更改）
 │  │  ├─config.php      模块配置文件
@@ -62,7 +63,7 @@ www  WEB部署目录（或者子目录）
 │  └─...        		更多可扩展模块目录
 ├─data                	数据资源目录（对外访问目录）
 │  ├─assets          	静态资源目录
-│  ├─conf         		配置文件目录
+│  ├─conf(<2.0)        	配置文件目录(2.0版本已移动到application的extra目录)
 │  ├─runtime         	运行时目录
 │  ├─uploads        	上传文件目录
 │  ├─install.lock       安装标识文件
