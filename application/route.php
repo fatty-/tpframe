@@ -18,6 +18,9 @@ return [
     '__pattern__' => [
         'name' => '\w+',
     ],
+
+    'robot'=>'addon/execute?c=robot&a=index&m=application',
+    
     '[hello]'     => [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],

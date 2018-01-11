@@ -75,7 +75,8 @@ use tpfcore\Core;
               <th>名称</th>
               <th>标识</th>
               <th>描述</th>
-              <th>版本</th>
+              <th>插件版本</th>
+              <th>适用版本</th>
               <th>作者</th>
               <th>操作</th>
           </tr>
@@ -89,11 +90,12 @@ use tpfcore\Core;
                       <td>{$vo.name}</td>
                       <td>{$vo.describe}</td>
                       <td>{$vo.version}</td>
+                      <td>{$vo.require}</td>
                       <td>{$vo.author}</td>
                       <td>
 
                           {eq name='vo.is_install' value='1'}
-                              {eq name="vo.ext" value="1"}<a class="btn confirm ajax-get"  href='{:Core::addons_url("qq://Qq/config",["catename"=>$vo.catename])}'><i class="fa fa-remove"></i> 配置 </a>{/eq}
+                              {eq name="vo.ext" value="1"}<a class="btn confirm ajax-get"  href='{:Core::addons_url($vo['catename']."://".$vo['name']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq}
                               <a class="btn confirm ajax-get"  href="{:url('addonUninstall', array('name' => $vo['name'],'catename'=>$vo['catename']))}"><i class="fa fa-remove"></i> 卸 载</a>
                              {else/}
                               <a class="btn confirm ajax-get"  href="{:url('addonInstall', array('name' => $vo['name'],'catename'=>$vo['catename']))}"><i class="fa fa-refresh"></i> 安 装</a>

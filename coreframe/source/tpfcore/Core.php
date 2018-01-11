@@ -1,12 +1,10 @@
 <?php
-// +----------------------------------------------------------------------
-// | Author: yaoyihong <510974211@qq.com>
-// +----------------------------------------------------------------------
 /**
- * ============================================================================
- * 版权所有 2017-2077 tpframe工作室，并保留所有权利。
  * @link http://www.tpframe.com/
  * @copyright Copyright (c) 2017 TPFrame Software LLC
+ * @author 510974211@qq.com
+ * ============================================================================
+ * 版权所有 2017-2077 tpframe工作室，并保留所有权利。
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！未经本公司授权您只能在不用于商业目的的前提下对程序代码进行修改和使用；
  * 不允许对程序代码以任何形式任何目的的再发布。
@@ -202,7 +200,7 @@ class Core{
 	 * @param var $param 参数
 	 * @author <510974211@qq.com>
 	 */
-	final static function loadAddonModel($param=[]){
+	final static function loadAddonModel($param=[],$layer=""){
 		if(null==$param || empty($param) || ""==$param){
 			return null;
 		}
@@ -215,14 +213,37 @@ class Core{
 
 			$backtrace_array = debug_backtrace(false, 1);
 
+			$current_directory_name = basename(dirname($backtrace_array[0]['file']));
+
 			$addon_path=str_replace(ROOT_PATH, "\\", dirname(dirname($backtrace_array[0]['file'])));
+
+			$addon_path=str_replace(DS, "\\", $addon_path);
 
 			$logincModel=$addon_path."\\logic\\".$param;
 
-			if(class_exists($logincModel)){
+			$entityModel=$addon_path."\\model\\".$param;
 
-				return new $logincModel();
-				
+			if($layer){
+
+				$model_object=$layer==LAYER_CONTROLLER_NAME?$logincModel:$entityModel;
+
+			}else{
+				switch ($current_directory_name) {
+
+			        case LAYER_CONTROLLER_NAME : $model_object = $logincModel; break;
+
+			        case LAYER_LOGIC_NAME      : $model_object = $entityModel; break;
+
+			        case LAYER_MODEL_NAME      : $model_object = $entityModel; break;
+
+			        default                    : $return_object = null; break;
+			    }
+			}
+
+			if(class_exists($model_object)){
+
+				return new $model_object();
+
 			}
 
 			return null;
@@ -237,6 +258,31 @@ class Core{
 		$logincModel="\\".ADDON_DIR_NAME."\\".$catename."\\".$addon_name."\\logic\\".$logic_name;
 
 		return new $logincModel();
+	}
+	/*
+	* 插件里面的数据验证
+	* name 插件名字
+	*/
+	final static function addonValidate($name){
+		if(null==$name || empty($name) || ""==$name){
+			return null;
+		}
+
+		$backtrace_array = debug_backtrace(false, 1);
+
+		$addon_path=str_replace(ROOT_PATH, "\\", dirname(dirname($backtrace_array[0]['file'])));
+
+		$addon_path=str_replace(DS, "\\", $addon_path);
+
+		$validateModel=$addon_path."\\validate\\".$name;
+		
+		if(class_exists($validateModel)){
+
+			return \think\Loader::validate($validateModel);
+
+		}
+		return null;
+
 	}
 }
 ?>

@@ -145,4 +145,16 @@ class Addon extends LogicBase
             !empty($value) && Db::execute($value);
     	}
     }
+    /**
+    * 判断插件是否已经正常安装
+    */
+    public function isInstall($where){
+
+        $result=self::getOneObject($where);
+
+        if(count($result)>0) return true;
+
+        return false;
+        
+    }
 }

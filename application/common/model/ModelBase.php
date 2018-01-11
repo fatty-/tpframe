@@ -73,7 +73,11 @@ class ModelBase extends Model
     { 
         $result= $this->allowField(true)->isUpdate(false)->save($data, $where=[], $sequence);
         if($getLastInsID){
-            return $this->getQuery()->getLastInsID($sequence);
+            if(method_exists($this, "getQuery")){
+                return $this->getQuery()->getLastInsID($sequence);
+            }else{
+                return $this->db()->getLastInsID($sequence);
+            }
         }
         return $result;
     }
@@ -200,7 +204,8 @@ class ModelBase extends Model
     */
     final protected function getObject($where = [], $field = true, $order = '', $paginate = array('rows' => null, 'simple' => false, 'config' => []), $join = array('join' => null, 'condition' => null, 'type' => 'INNER'), $group = array('group' => '', 'having' => ''), $limit = null, $data = null)
     {
-        
+        if(isset($where['page'])) unset($where['page']);
+
         $where=StringHelper::parseStrTable($where);
         
         $field=StringHelper::parseStrTable($field);

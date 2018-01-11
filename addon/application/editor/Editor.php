@@ -46,7 +46,7 @@ class Editor extends AddonBase implements AddonInterface
     public function addonInfo()
     {
         
-        return ['name' => 'Editor', 'title' => '文本编辑器', 'describe' => '富文本编辑器', 'author' => 'yaosean', 'version' => '1.0' , "ext" => false];
+        return ['name' => 'Editor', 'title' => '文本编辑器', 'describe' => '富文本编辑器', 'author' => 'yaosean', 'version' => '1.0' ,'require'=>'>1.0',  "ext" => false];
     }
     
     /**

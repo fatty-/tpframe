@@ -1,15 +1,8 @@
 <?php
 /**
- * ============================================================================
- * 版权所有 2017-2077 tpframe工作室，并保留所有权利。
  * @link http://www.tpframe.com/
  * @copyright Copyright (c) 2017 TPFrame Software LLC
  * @author 510974211@qq.com
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！未经本公司授权您只能在不用于商业目的的前提下对程序代码进行修改和使用；
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * 插件控制器
  */
 
 namespace app\backend\controller;
@@ -38,7 +31,13 @@ class Addon extends AdminBase
 
         $controller = new $class_path();
 
-        $controller->$a();
+        $result = $controller->$a();
+
+        if(is_array($result)){
+
+            $this->jump($result);
+
+        }
     }
 
     /**
@@ -57,7 +56,7 @@ class Addon extends AdminBase
 
         list($status, $message) = $controller->addonInstall();
 
-        $this->jump($status, $message);
+        $this->jump([$status, $message]);
     }
 
     /**
@@ -76,7 +75,7 @@ class Addon extends AdminBase
 
         list($status, $message) = $controller->addonUninstall();
 
-        $this->jump($status, $message);
+        $this->jump([$status, $message]);
     }
 
     /**

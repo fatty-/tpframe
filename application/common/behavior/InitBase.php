@@ -48,29 +48,32 @@ class InitBase
      * 检查是否已经正常安装系统
      */
     private function checkInstall(){
-        if(!preg_match('/(.*?)install(.*?)/', strtolower(request()->baseUrl()))){
-            if(!file_exists('data/install.lock') || !file_exists(APP_PATH."extra/database.php")){
-                Header("Location:/install");
-                exit;
-            }
-        }else{
+
+        // 判断是否是进行安装操作
+        if(preg_match('/^\/install\/(.*?)/', strtolower(request()->baseUrl()))){
 
             if(file_exists("data/install.lock") && file_exists(APP_PATH."extra/database.php")){
 
                 Header("Location:/");exit;
 
             }
+            // 如果有install，配置文件又不完整的情况，如果没到第5步，有任意一个配置文件则表示非正常安装
             if(!preg_match('/(.*?)step5(.*?)/', strtolower(request()->baseUrl()))){
                 if(file_exists("data/install.lock") || file_exists(APP_PATH."extra/database.php")){
                     exit("请删除data/install.lock文件与".APP_PATH."extra/database.php文件后再重新安装");
                 }               
             }else{
+                // 如果有install，配置文件又不完整的情况，如果到了第5步，数据库配置文件不在，则表示前面安装有问题
                 if(file_exists("data/install.lock") && !file_exists(APP_PATH."extra/database.php")){
                     exit("请删除data/install.lock文件后再重新安装");
                 }   
             }
+        }else{
+            if(!file_exists('data/install.lock') || !file_exists(APP_PATH."extra/database.php")){
+                Header("Location:/install");
+                exit;
+            }
         }
-        
     }
 
     /**
