@@ -50,7 +50,7 @@ class InitBase
     private function checkInstall(){
 
         // 判断是否是进行安装操作
-        if(preg_match('/^\/install\/(.*?)/', strtolower(request()->baseUrl()))){
+        if(preg_match('/^\/install(.*?)/', strtolower(request()->baseUrl()))){
 
             if(file_exists("data/install.lock") && file_exists(APP_PATH."extra/database.php")){
 
@@ -69,6 +69,7 @@ class InitBase
                 }   
             }
         }else{
+
             if(!file_exists('data/install.lock') || !file_exists(APP_PATH."extra/database.php")){
                 Header("Location:/install");
                 exit;
