@@ -8,8 +8,10 @@ class Index extends AdminBase
 {
     public function index()
     {
+        //print_r(Core::loadModel("Menu")->getMenuArrTree(['parentid'=>0]));
         return $this->fetch("index",[
-        	'listTree'=>Core::loadModel("Menu")->getMenuArrTree(['display'=>1],true)
+            'listMianNav'=>Core::loadModel("Menu")->getMenuArrTree(['parentid'=>0]),
+        	'listTree'=>Core::loadModel("Menu")->getMenuArrTree(['display'=>1,'parentid'=>["gt","0"]],true)
         ]);
     }
     public function main(){

@@ -171,28 +171,28 @@ CREATE TABLE `tpf_menu` (
   `sort` smallint(6) DEFAULT '0' COMMENT '排序ID',
   `parentid` int(11) DEFAULT '0' COMMENT '父id',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_menu
 -- ----------------------------
-INSERT INTO `tpf_menu` VALUES ('1', '设置', 'backend', 'Index', 'index', '1', '', '1', '', 'cogs', '0', '0');
+INSERT INTO `tpf_menu` VALUES ('1', '设置', 'backend', 'Index', 'index', '1', '', '1', '', 'cogs', '0', '28');
 INSERT INTO `tpf_menu` VALUES ('2', '个人信息', 'backend', 'Index', 'index', '1', '', '1', '', '', '0', '1');
 INSERT INTO `tpf_menu` VALUES ('3', '修改信息', 'backend', 'Member', 'userinfo', '1', '', '1', '', '', '0', '2');
 INSERT INTO `tpf_menu` VALUES ('4', '修改密码', 'backend', 'Member', 'uppwd', '1', '', '1', '', '', '0', '2');
 INSERT INTO `tpf_menu` VALUES ('5', '网站信息', 'backend', 'Setting', 'site', '1', '', '1', '', '', '0', '1');
 INSERT INTO `tpf_menu` VALUES ('6', '清空缓存', 'backend', 'Setting', 'clear', '1', '', '1', '', '', '0', '1');
-INSERT INTO `tpf_menu` VALUES ('7', '用户管理', 'backend', 'Index', 'index', '1', '', '1', '', 'group', '0', '0');
+INSERT INTO `tpf_menu` VALUES ('7', '用户管理', 'backend', 'Index', 'index', '1', '', '1', '', 'group', '0', '28');
 INSERT INTO `tpf_menu` VALUES ('8', '用户组', 'backend', 'Index', 'index', '1', '', '1', '', '', '0', '7');
 INSERT INTO `tpf_menu` VALUES ('9', '本站用户', 'backend', 'Member', 'index', '1', '', '1', '', '', '0', '8');
 INSERT INTO `tpf_menu` VALUES ('10', '管理组', 'backend', 'Index', 'index', '1', '', '1', '', '', '0', '7');
 INSERT INTO `tpf_menu` VALUES ('11', '管理员', 'backend', 'Member', 'admin', '1', '', '1', '', '', '0', '10');
-INSERT INTO `tpf_menu` VALUES ('12', '菜单管理', 'backend', 'Index', 'index', '1', '', '1', '', 'list', '0', '0');
+INSERT INTO `tpf_menu` VALUES ('12', '菜单管理', 'backend', 'Index', 'index', '1', '', '1', '', 'list', '0', '28');
 INSERT INTO `tpf_menu` VALUES ('13', '后台菜单', 'backend', 'Menu', 'index', '1', '', '1', '', '', '0', '12');
-INSERT INTO `tpf_menu` VALUES ('14', '内容管理', 'backend', 'Index', 'index', '1', '', '1', '', 'th', '0', '0');
+INSERT INTO `tpf_menu` VALUES ('14', '内容管理', 'backend', 'Index', 'index', '1', '', '1', '', 'th', '0', '29');
 INSERT INTO `tpf_menu` VALUES ('15', '文章管理', 'backend', 'Posts', 'index', '1', '', '1', '', '', '0', '14');
 INSERT INTO `tpf_menu` VALUES ('16', '分类管理', 'backend', 'Category', 'index', '1', '', '1', '', '', '0', '14');
-INSERT INTO `tpf_menu` VALUES ('17', '扩展工具', 'backend', 'Index', 'index', '1', '', '1', '', 'cloud', '0', '0');
+INSERT INTO `tpf_menu` VALUES ('17', '扩展工具', 'backend', 'Index', 'index', '1', '', '1', '', 'cloud', '0', '30');
 INSERT INTO `tpf_menu` VALUES ('18', '幻灯片', 'backend', 'Index', 'index', '1', '', '1', '', '', '0', '17');
 INSERT INTO `tpf_menu` VALUES ('19', '幻灯片管理', 'backend', 'Slide', 'index', '1', '', '1', '', '', '0', '18');
 INSERT INTO `tpf_menu` VALUES ('20', '幻灯片分类', 'backend', 'SlideCat', 'index', '1', '', '1', '', '', '0', '18');
@@ -203,6 +203,9 @@ INSERT INTO `tpf_menu` VALUES ('24', '菜单管理', 'backend', 'Nav', 'index', 
 INSERT INTO `tpf_menu` VALUES ('25', '菜单分类', 'backend', 'NavCat', 'index', '1', '', '1', '', '', '0', '23');
 INSERT INTO `tpf_menu` VALUES ('26', '插件管理', 'backend', 'Addon', 'addonList', '1', '', '1', '', '', '0', '17');
 INSERT INTO `tpf_menu` VALUES ('27', '角色管理', 'backend', 'Role', 'index', '1', '', '1', '管理员角色', '', '0', '10');
+INSERT INTO `tpf_menu` VALUES ('28', '基本信息', 'backend', 'Index', 'index', '1', null, '1', null, null, '0', '0');
+INSERT INTO `tpf_menu` VALUES ('29', 'CMS管理', 'backend', 'Index', 'index', '1', null, '1', null, null, '0', '0');
+INSERT INTO `tpf_menu` VALUES ('30', '扩展管理', 'backend', 'Index', 'index', '1', null, '1', null, null, '0', '0');
 
 -- ----------------------------
 -- Table structure for t_nav
