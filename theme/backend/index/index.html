@@ -100,11 +100,11 @@ if(window.top.length>0){
         {notempty name="vo.son"}
           <ul class="submenu">
             {volist name="vo.son" id="child"}
-            <li><a href="javascript:openapp('{:url($child.controller.'/'.$child.action)}','{$child.id}Admin','{$child.name}',true);" class="dropdown-toggle"><i class="fa fa-caret-right"></i> <span class="menu-text"> {$child.name} </span> <b class="arrow fa fa-angle-right"></b></a>
+            <li><a href="javascript:openapp('{:url($child.controller.'/'.$child.action,$child.urlext)}','{$child.id}Admin','{$child.name}',true);" class="dropdown-toggle"><i class="fa fa-caret-right"></i> <span class="menu-text"> {$child.name} </span> <b class="arrow fa fa-angle-right"></b></a>
               {notempty name="child.son"}
               <ul class="submenu">
               {volist name="$child.son" id="son"}
-                <li> <a href="javascript:openapp('{:url($son.controller.'/'.$son.action)}','{$son.id}Admin','{$son.name}',true);"> &nbsp;<i class="fa fa-angle-double-right"></i> <span class="menu-text"> {$son.name} </span> </a> </li>
+                <li> <a href="javascript:openapp('{:url($son.controller.'/'.$son.action,$son.urlext)}','{$son.id}Admin','{$son.name}',true);"> &nbsp;<i class="fa fa-angle-double-right"></i> <span class="menu-text"> {$son.name} </span> </a> </li>
               {/volist}
 
               </ul>
