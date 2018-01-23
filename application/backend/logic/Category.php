@@ -68,6 +68,9 @@ class Category extends AdminBase
 		if(!empty($data['cid'])){
 			$parentid=$data['cid'];
 		}
+		if(!empty($data['parentid'])){
+			$parentid=$data['parentid'];
+		}
 		$result=self::getObject([],"*","sort ASC");
 		$new_result=[];
 		foreach ($result as $key => $value) {
