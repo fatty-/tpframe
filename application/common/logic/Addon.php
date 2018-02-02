@@ -5,6 +5,7 @@
 namespace app\common\logic;
 use think\Db;
 use tpfcore\Core;
+use tpfcore\helpers\StringHelper;
 /**
  * 插件逻辑
  */
@@ -18,7 +19,6 @@ class Addon extends LogicBase
      */
     public function getAddonList($type)
     {
-        // $object_list = $this->getUninstalledList();
         $object_list = $this->getAddonByType($type);
 
         $list = [];
@@ -29,11 +29,13 @@ class Addon extends LogicBase
 
             $addon_info = $object->addonInfo();
 
-            $info = $model->getOneObject(['name' => $addon_info['name']]);
+            $info = $model->getOneObject(['module' => $addon_info['name']]);
 
             $addon_info['is_install'] = empty($info) ? DATA_DISABLE : DATA_NORMAL;
 
-            $addon_info['catename']=$object->cate;
+            $addon_info['status'] = empty($info) ? 0 : $info['status'];
+
+            $addon_info['id'] = empty($info) ? 0 : $info['id'];
 
             $list[] = $addon_info;
 
@@ -75,17 +77,21 @@ class Addon extends LogicBase
     public function getAddonByType($type)
     {
 
-        $dir_list = \tpfcore\helpers\FileHelper::get_dir(ADDON_DIR_NAME."/".$type);
+        $dir_list = \tpfcore\helpers\FileHelper::get_dir(ADDON_DIR_NAME);
         
         foreach ($dir_list as $key => $value) {
 
-            $class = "\\".ADDON_DIR_NAME."\\$type\\$value\\".ucfirst($value);
+            $class = "\\".ADDON_DIR_NAME."\\$value\\".StringHelper::s_format_class($value);
 
             if (!isset(self::$instance[$class])) {
 
-                self::$instance[$class] = new $class();
-                
-                self::$instance[$class]->cate=$type;
+                $confEntity=new $class();
+
+                if($confEntity->addonInfo()['type']==$type){
+
+                    self::$instance[$class] = $confEntity;
+
+                }
             }
             
         }
@@ -98,17 +104,49 @@ class Addon extends LogicBase
     */
     public function getCateAddon(){
 
-        $cate=[];
+        $cate=[];$arr=[];
 
         $dir_list = \tpfcore\helpers\FileHelper::get_dir(ADDON_DIR_NAME);
 
         foreach ($dir_list as $key => $value) {
 
-            $config=require ADDON_DIR_NAME.'/'.$value."/config.php";
+            $confClassName=StringHelper::s_format_class($value);
 
-            $config['plugname']=$value;
+            if(!file_exists(ADDON_DIR_NAME.'/'.$value."/{$confClassName}.php")){
 
-            $cate[]=$config;
+                throw new \Exception(ADDON_DIR_NAME.'/'.$value."/{$confClassName}.php文件不存在", 1);
+                
+            }else{
+
+                $class=new \addon\cms\Cms();
+
+                $confEntityPath="\\".ADDON_DIR_NAME."\\{$value}\\{$confClassName}";
+
+                $confEntity=new $confEntityPath();
+
+                $config=$confEntity->addonInfo();
+
+                $arr[]=$config['type'];
+
+            }
+        }
+        foreach (array_unique($arr) as $key => $value) {
+            if($value=="module"){
+                $cate[$key]=[
+                    "plugName"=>"模块插件"
+                ];
+            }
+            if($value=="behavior"){
+                $cate[$key]=[
+                    "plugName"=>"行为插件"
+                ];
+            }
+            if($value=="behavior_module"){
+                $cate[$key]=[
+                    "plugName"=>"行为模块插件"
+                ];
+            }
+            $cate[$key]['type']=$value;
         }
         return $cate;
     }
@@ -130,7 +168,7 @@ class Addon extends LogicBase
     public function executeSql($catename='' , $name = '', $sql_name = '')
     {
 
-    	$sql_string = file_get_contents(ADDON_PATH .$catename . DS . $name . DS . 'data' . DS . $sql_name.'.sql');
+    	$sql_string = file_get_contents(ADDON_PATH . $name . DS . 'data' . DS . $sql_name.'.sql');
 
     	$sql = explode(";\n", str_replace("\r", "\n", $sql_string));
 

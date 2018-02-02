@@ -30,4 +30,19 @@ return [
         // 验证成功后是否重置        
         'reset'    => true
     ],
+    //插件分类
+    'addon_class'=>[
+        0=>[
+            'type'=>"module",
+            "name"=>"模块插件"
+        ],
+        1=>[
+            'type'=>"behavior",
+            "name"=>"行为插件"
+        ],
+        2=>[
+            'type'=>"behavior_module",
+            "name"=>"行为模块插件"
+        ]
+    ]
 ];

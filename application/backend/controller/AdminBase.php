@@ -36,9 +36,9 @@ class AdminBase extends ControllerBase
     public function valildataPrivs(){
         $action=CONTROLLER_NAME.ACTION_NAME;
         $menu=Core::loadModel("Menu")->getMenuArrTree(['display'=>1],true,true);
-        $privs=[];$outPrivs=["Indexmain"];
+        $privs=[];$outPrivs=["Indexmain","Indexindex"];
         foreach ($menu as $key => $value) {
-            $privs[]=$value['controller'].$value['action'];
+            $privs[]=$value['controller'].strtolower($value['action']);
         }
         if(\think\Session::get("backend_author_sign")['userid']!=1 &&! in_array($action, $outPrivs) && !in_array($action, array_unique($privs))){
             $this->jump([RESULT_ERROR, '你没有权限进行此操作', null]);

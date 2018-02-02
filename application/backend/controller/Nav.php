@@ -20,7 +20,6 @@ class Nav extends AdminBase
             'list'=>Core::loadModel($this->name)->getNavListByid(['id'=>$this->param['id']]),
             'categorys'=>Core::loadModel($this->name)->getNavList("add",$this->param),
             'listNavCat'=>Core::loadModel("NavCat")->getNavCatList(),
-            'categorys_tree'=>Core::loadModel("Category")->getCategoryList("add",$this->param),
             'id'=>$this->param['id']
         ]);
     }
@@ -30,7 +29,6 @@ class Nav extends AdminBase
         return $this->fetch("add",[
             'categorys'=>Core::loadModel($this->name)->getNavList("add",$this->param),
             'listNavCat'=>Core::loadModel("NavCat")->getNavCatList(),
-            'categorys_tree'=>Core::loadModel("Category")->getCategoryList("add")
         ]);
     }
     public function del()

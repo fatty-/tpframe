@@ -155,9 +155,13 @@ class Core{
 	 */
 	final static function get_addon_class($catename = '', $name = '')
 	{
-	    $lower_name = strtolower($name);
+	    //$lower_name = strtolower($name);
+
+	    $addonClass=StringHelper::s_format_class($catename);
 	    
-	    $class = ADDON_DIR_NAME."\\".$catename."\\{$lower_name}\\{$name}";
+	    //$class = ADDON_DIR_NAME."\\".$catename."\\{$lower_name}\\{$name}";
+
+	    $class = ADDON_DIR_NAME."\\{$catename}\\{$addonClass}";
 	    
 	    return $class;
 	}
@@ -179,20 +183,23 @@ class Core{
 	final static function addons_url($url, $param = array())
 	{
 
-	    $url        =  parse_url($url);   //  Array ( [scheme] => login [host] => qq [path] => /login )
+	    $url        =  parse_url($url);   // login://qq/login ====> Array ( [scheme] => login [host] => qq [path] => /login )
+
 	    $addons     =  $url['scheme'];
+
 	    $controller =  $url['host'];
-	    $action     =  $url['path'];
+
+	    $action     =  isset($url['path'])?$url['path']:"index";
 
 	    /* 基础参数 */
 	    $params_array = array(
-	        'm'     => $addons,
-	        'c' 	=> $controller,
-	        'a'     => substr($action, 1),
+	        'm'     => strtolower($addons),
+	        'c' 	=> strtolower($controller),
+	        'a'     => strtolower(substr($action, 1)),
 	    );
 
 	    $params = array_merge($params_array, $param); //添加额外参数
-	    
+
 	    return url('addon/execute', $params);
 	}
 	/**
@@ -200,7 +207,7 @@ class Core{
 	 * @param var $param 参数
 	 * @author <510974211@qq.com>
 	 */
-	final static function loadAddonModel($param=[],$layer=""){
+	final static function loadAddonModel($param=[],$module="",$layer=""){
 		if(null==$param || empty($param) || ""==$param){
 			return null;
 		}
@@ -223,11 +230,21 @@ class Core{
 
 			$entityModel=$addon_path."\\model\\".$param;
 
+			// 如果有模块
+			if($module){
+
+				$logincModel="\\addon\\{$module}"."\\logic\\".$param;
+
+				$entityModel="\\addon\\{$module}"."\\model\\".$param;
+
+			}
+
 			if($layer){
 
 				$model_object=$layer==LAYER_CONTROLLER_NAME?$logincModel:$entityModel;
 
 			}else{
+
 				switch ($current_directory_name) {
 
 			        case LAYER_CONTROLLER_NAME : $model_object = $logincModel; break;
@@ -240,7 +257,7 @@ class Core{
 			    }
 			}
 
-			if(class_exists($model_object)){
+			if(class_exists("addon\cms\logic\Category")){
 
 				return new $model_object();
 
@@ -249,13 +266,13 @@ class Core{
 			return null;
 		}
 
-		$catename=$param['m'];
+		// 数组的情况下有参数m表示模块  l表示逻辑
 
-		$logic_name=isset($param['l']) &&  $param['l'] ? $param['l']:StringHelper::s_format_class($param['c']);
+		$module=$param['m'];
 
-		$addon_name=$param['c'];
+		$logic_name=isset($param['l']) && $param['l'] ? $param['l']:StringHelper::s_format_class($param['m']);
 
-		$logincModel="\\".ADDON_DIR_NAME."\\".$catename."\\".$addon_name."\\logic\\".$logic_name;
+		$logincModel="\\".ADDON_DIR_NAME."\\".$module."\\logic\\".$logic_name;
 
 		return new $logincModel();
 	}

@@ -8,7 +8,6 @@ class Index extends AdminBase
 {
     public function index()
     {
-        //print_r(Core::loadModel("Menu")->getMenuArrTree(['parentid'=>0]));
         return $this->fetch("index",[
             'listMianNav'=>Core::loadModel("Menu")->getMenuArrTree(['parentid'=>0]),
         	'listTree'=>Core::loadModel("Menu")->getMenuArrTree(['display'=>1,'parentid'=>["gt","0"]],true)
@@ -32,8 +31,6 @@ class Index extends AdminBase
     			"执行时间限制" => ini_get('max_execution_time') . "s",
     			"剩余空间" => round((@disk_free_space(".") / (1024 * 1024)), 2) . 'M',
     	);
-    	//$this->assign('server_info', $info);
-
     	return $this->fetch("main",[
     		"server_info"=>$info
     	]);

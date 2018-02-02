@@ -27,19 +27,24 @@ class AddonBase extends ControllerBase
         $class = get_class($this);
 
         $arr=explode("\\", $class);
-        
-        $addon_name = strtolower(substr($class, 1 + strrpos($class, '\\')));
+
 
         $cate_name = strtolower($arr[1]);
         
-        $view_path = ADDON_DIR_NAME."/$cate_name/".$addon_name.'/view/';
+        $view_path = ADDON_DIR_NAME."/{$cate_name}/view/";
         
-        $this->assign('static_path', '/' .ADDON_DIR_NAME . "/$cate_name/" . $addon_name.'/view/static');
+        $this->assign('static_path', '/' .ADDON_DIR_NAME . "/{$cate_name}/view/static");
 
         $this->assign('catename',$cate_name);
         
         $this->view->engine(['view_path' => $view_path]);
         
         echo $this->fetch($template_name,$params);
+    }
+    /*
+        插件使用说明
+    */
+    public function doc(){
+        echo "该插件开发者未完善使用文档";
     }
 }

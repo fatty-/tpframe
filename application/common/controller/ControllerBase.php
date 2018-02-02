@@ -78,11 +78,12 @@ class ControllerBase extends Controller
         jump(40040,'操作非法',['token'=>'a46awfa1wf1aw6gawf'])
 
         说明： 
-            页面跳转（web）   code为1表示成功      handle 为1表示pc       主要用于后台
-            ajax/api接口      code为0表示成功      handle 为0表示app      主要用于PC、微信、app、mobile
+            页面跳转（web）   code为0表示成功     返回数据格式：[0,"操作成功","Index/index",[]]                       主要用于pc、微信、mobile
+            api接口           code为0表示成功     返回数据格式：[0,"操作成功",['token'=>'a46awfa1wf1aw6gawf']]        主要用于app
      */
-    final protected function jump($_data = [], $handle=1)
+    final protected function jump($_data = [])
     {
+
         if(!is_array($_data) || count($_data)>4) return null;
 
         $default_data=[0,'',null,null];
@@ -93,10 +94,11 @@ class ControllerBase extends Controller
         $error    = RESULT_ERROR;
         $redirect = RESULT_REDIRECT;
 
-        // status为数字的情况
-        if(is_numeric($status)){
+        // status为数字的情况 写api
 
-            die(json_encode(['code'=>$status,"msg"=>$message,"data"=>$url]));
+        if(is_numeric($status)){
+            
+            die(json(['code'=>$status,"msg"=>$message,"data"=>$url])->send());
 
         }else{
             // 分配跳转类型
@@ -107,5 +109,16 @@ class ControllerBase extends Controller
                 default        :return $data;
             }
         }
+    }
+    /**
+     * 系统跳转
+     */
+    final protected function tip($status = '', $message = '操作成功', $url = null, $data = '')
+    {
+        $this->view->engine->layout(false);
+
+        is_array($status) && list($status, $message, $url) = $status;
+        
+        die($this->fetch("public/jump",['title'=>$message,'url'=>$url]));
     }
 }

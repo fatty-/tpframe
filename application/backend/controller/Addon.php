@@ -8,6 +8,8 @@
 namespace app\backend\controller;
 use tpfcore\Core;
 use tpfcore\helpers\StringHelper;
+use think\Db;
+use think\Config;
 /**
  * 插件控制器
  */
@@ -15,23 +17,49 @@ class Addon extends AdminBase
 {
 
     /**
+     * 插件基类构造方法
+     c：controller    控制器
+     a：action        操作
+     m：module         模块
+     */
+    public function checkInstall()
+    {
+        
+        if(!array_key_exists("m", $this->param)){
+
+            $this->jump([RESULT_ERROR,"该插件模块不存在",null]);            
+
+        }
+
+        $module=$this->param['m'];
+
+        if(!Core::loadModel("Addon")->isInstall(['module'=>$module,'status'=>1])){
+
+            $this->jump([RESULT_ERROR,"请先安装或启用模块{$module}插件后再试",null]);
+            
+        }
+    }
+
+    /**
      * 执行插件控制器
-     * catename  插件分类  控制模块  参数m
-     * addon_name  插件名  根据控制器来确定
-     * controller_name  控制器名  参数c来确定
-     * action_name  控制器里-操作名  参数a
+     *  控制模块  参数m
+     *  控制器名  参数c来确定
+     *  控制器里-操作名  参数a
      * http://www.tpframe.com/addon/execute?c=qq&a=callback&m=login
      */
-    public function execute($c = null, $a = null , $m = '')
+    public function execute($c = null, $a = null , $m = '' )
     {
+        $this->checkInstall();
 
-        $controller_name=StringHelper::s_format_class($c);
+        $controller_name=isset($this->param['c'])?StringHelper::s_format_class($c):StringHelper::s_format_class($m);
 
-        $class_path = "\\".ADDON_DIR_NAME."\\$m\\".$c."\controller\\".$controller_name;
+        $action=isset($this->param['a'])?$this->param['a']:"index";
 
+        $class_path = "\\".ADDON_DIR_NAME."\\".$m."\\controller\\".$controller_name;
+ 
         $controller = new $class_path();
 
-        $result = $controller->$a();
+        $result = $controller->$action();
 
         if(is_array($result)){
 
@@ -45,16 +73,27 @@ class Addon extends AdminBase
      */
     public function addonInstall($catename=null,$name = null)
     {
+        Db::startTrans();
+        try{
+            $strtolower_name = strtolower($name);
 
-        $strtolower_name = strtolower($name);
+            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".$name;
 
-        $class_path = "\\".ADDON_DIR_NAME."\\".$catename."\\".$strtolower_name."\\".$name;
+            Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'install');
 
-        Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'install');
+            $controller = new $class_path();
 
-        $controller = new $class_path();
+            list($status, $message) = $controller->addonInstall();
 
-        list($status, $message) = $controller->addonInstall();
+            Db::commit();
+
+        }catch(\Exception $e){
+
+            Db::rollback();
+
+            $this->jump([RESULT_SUCCESS,"安装失败,失败原因".$e->getMessage()]);
+
+        }
 
         $this->jump([$status, $message]);
     }
@@ -65,15 +104,29 @@ class Addon extends AdminBase
     public function addonUninstall($catename=null,$name = null)
     {
 
-        $strtolower_name = strtolower($name);
+        Db::startTrans();
 
-        $class_path = "\\".ADDON_DIR_NAME."\\".$catename."\\".$strtolower_name."\\".$name;
+        try{
 
-        Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'uninstall');
+            $strtolower_name = strtolower($name);
 
-        $controller = new $class_path();
+            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".$name;
 
-        list($status, $message) = $controller->addonUninstall();
+            Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'uninstall');
+
+            $controller = new $class_path();
+
+            list($status, $message) = $controller->addonUninstall();
+
+            Db::commit();
+
+        }catch(\Exception $e){
+
+            Db::rollback();
+
+            $this->jump([RESULT_SUCCESS,"卸载失败,失败原因".$e->getMessage()]);
+
+        }
 
         $this->jump([$status, $message]);
     }
@@ -83,9 +136,10 @@ class Addon extends AdminBase
      */
     public function addonList()
     {
-        $listAddonCate = Core::loadModel($this->name)->getCateAddon();
+
+        $listAddonCate = Config::get('addon_class');
       
-        $type = input("type")?input("type"):$listAddonCate[0]['plugname'];
+        $type = input("type")?input("type"):$listAddonCate[0]['type'];
 
         $this->setTitle('插件列表');
         
@@ -93,7 +147,7 @@ class Addon extends AdminBase
 
             "list"=>Core::loadModel($this->name)->getAddonList($type),
 
-            "listAddonCate"=>$listAddonCate ,
+            "listAddonCate"=> $listAddonCate,
 
             'type'  => $type
 

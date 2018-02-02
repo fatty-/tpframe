@@ -25,4 +25,7 @@ class Menu extends AdminServiceBase
 	public function getMenuArrTree($where,$filter=false,$returnarr=false){
 		return Core::loadModel($this->name)->getMenuArrTree($where,$filter,$returnarr);	
 	}
+	public function delMenu($data){
+		return Core::loadModel($this->name)->delMenu($data);
+	}
 }

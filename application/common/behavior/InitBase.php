@@ -69,7 +69,6 @@ class InitBase
                 }   
             }
         }else{
-
             if(!file_exists('data/install.lock') || !file_exists(APP_PATH."extra/database.php")){
                 Header("Location:/install");
                 exit;

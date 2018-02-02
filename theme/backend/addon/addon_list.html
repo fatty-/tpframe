@@ -52,6 +52,40 @@ use tpfcore\Core;
         TOKEN: ""
     };
     </script>
+    <script src="__THEMES__/js/jquery.js"></script>
+    <script src="__THEMES__/js/wind.js"></script>
+    <script src="__THEMES__/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $(".status").click(function(){
+            $this=$(this);
+              var data=$(this).attr("data"),src=$(this).attr("src");
+              var dataArr=data.split("|"),table=dataArr[0],colum=dataArr[1],key=dataArr[2],keyval=dataArr[3];
+              var newval=src.indexOf("btn_enable.png")>0?0:1;
+            $.ajax({
+                type:"post",
+                dataType:"json",
+                url:"{:url('Links/ajaxdata')}",
+                data:{"table":table,"colum":colum,"columval":newval,"key":key,"keyval":keyval},
+                beforeSend:function(obj){
+                    $this.attr("src","/data/assets/images/btn_loading.gif");
+                },
+                success:function(data){
+                  if(data.code==1){
+                    if(src.indexOf("btn_enable.png")>0){
+                      $this.attr("src","/data/assets/images/btn_disable.gif");
+                    }else{
+                      $this.attr("src","/data/assets/images/btn_enable.png");
+                    }
+                  }else{
+                    alert(data.msg);
+                  }
+                  
+                }
+            });
+        });
+      });
+      </script>
     <!-- Le javascript==================================================-
     -> <!-- Placed at the end of the document so the pages load faster -->
     <script src="__THEMES__/js/jquery.js"></script>
@@ -63,7 +97,7 @@ use tpfcore\Core;
     <div class="wrap js-check-wrap">
         <ul class="nav nav-tabs">
             {volist name="listAddonCate" id="vo"}
-            <li {eq name="vo.plugname" value="$type"}class="active"{/eq}><a href="{:url('Addon/addonList',['type'=>$vo.plugname])}">{$vo.addonname}</a></li>
+            <li {eq name="vo.type" value="$type"}class="active"{/eq}><a href="{:url('Addon/addonList',['type'=>$vo.type])}">{$vo.name}</a></li>
             {/volist}
         </ul>
         <div class="box">
@@ -77,6 +111,7 @@ use tpfcore\Core;
               <th>描述</th>
               <th>插件版本</th>
               <th>适用版本</th>
+              <th>插件状态</th>
               <th>作者</th>
               <th>操作</th>
           </tr>
@@ -91,14 +126,28 @@ use tpfcore\Core;
                       <td>{$vo.describe}</td>
                       <td>{$vo.version}</td>
                       <td>{$vo.require}</td>
+                      <td>
+                       {eq name='vo.is_install' value='1'}
+                         {eq name="vo.status" value="1"}
+                         <img src="/data/assets/images/btn_enable.png" title="启用" class="status" data="Addon|status|id|{$vo.id}"/>
+                         {else/}
+                         <img src="/data/assets/images/btn_disable.gif" title="禁用" class="status" data="Addon|status|id|{$vo.id}"/>
+                         {/eq}
+                       {else/}  
+                       未安装
+                       {/eq}
+                      </td>
                       <td>{$vo.author}</td>
                       <td>
-
                           {eq name='vo.is_install' value='1'}
-                              {eq name="vo.ext" value="1"}<a class="btn confirm ajax-get"  href='{:Core::addons_url($vo['catename']."://".$vo['name']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq}
-                              <a class="btn confirm ajax-get"  href="{:url('addonUninstall', array('name' => $vo['name'],'catename'=>$vo['catename']))}"><i class="fa fa-remove"></i> 卸 载</a>
+                              {eq name="vo.ext" value="1"}
+                              <a class="btn btn-info confirm ajax-get"  href='{:Core::addons_url($vo['name']."://".$vo['handle']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq} 
+                              {neq name="vo.type" value="behavior"}
+                              <a class="btn btn-primary confirm ajax-get"  href='{$vo.manager.url|default=''}'><i class="fa fa-remove"></i> {$vo.manager.text} </a>{/neq}
+                              <a class="btn btn-warning confirm ajax-get"  href="{:url('addonUninstall', array('name' => $vo['name']))}"><i class="fa fa-remove"></i> 卸 载</a>
+                              <a class="btn-link confirm ajax-get"  href="{:Core::addons_url($vo['name']."://".$vo['handle']."/doc")}">使用说明 </a>
                              {else/}
-                              <a class="btn confirm ajax-get"  href="{:url('addonInstall', array('name' => $vo['name'],'catename'=>$vo['catename']))}"><i class="fa fa-refresh"></i> 安 装</a>
+                              <a class="btn confirm ajax-get"  href="{:url('addonInstall', array('name' => $vo['name']))}"><i class="fa fa-refresh"></i> 安 装</a>
                           {/eq}
                       </td>
                     </tr>

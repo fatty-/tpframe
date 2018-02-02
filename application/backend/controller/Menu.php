@@ -29,7 +29,6 @@ class Menu extends AdminBase
     }
     public function del()
     {
-        die('别乱来');
     	$this->jump(Core::loadModel($this->name)->delMenu($this->param));
     }
 } 

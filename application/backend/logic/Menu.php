@@ -12,20 +12,24 @@ use \tpfcore\Core;
  */
 class Menu extends AdminBase
 {
+	private $parentids=[];
 	private $arr=[];
 	public function saveMenu($data){
-		/*$validate=\think\Loader::validate($this->name);
-		$validate_result = $validate->scene('add')->check($data);
-        if (!$validate_result) {    
-            return [RESULT_ERROR, $validate->getError(), null];
-        }*/
 		$last_id=Core::loadModel($this->name)->saveObject($data);
 		if($last_id){
         	return [RESULT_SUCCESS, '操作成功', url('Menu/index')];
         }
 	}
 	public function delMenu($data){
-		return self::deleteObject($data,true)?[RESULT_SUCCESS, '删除成功', url('links/index')]:[RESULT_ERROR, '删除失败', url('links/index')];
+		/*
+			如下情况不能删除
+			1、还有子菜单的时候
+		*/
+		$childs=self::getList(["where"=>['parentid'=>$data['id']]]);
+		if(count($childs)>0){
+			return [RESULT_ERROR , '删除失败，该分类下还有子分类', url("Menu/index")];
+		}
+		return self::deleteObject($data,true)?[RESULT_SUCCESS, '删除成功', url('Menu/index')]:[RESULT_ERROR, '删除失败', url('Menu/index')];
 	}
 	public function getMenuListByid($data){
 		return self::getOneObject($data);
@@ -80,7 +84,7 @@ class Menu extends AdminBase
 		return $categorys;
 	}
 	public function getMenuArrTree($where=[],$filter,$returnarr){
-		$result=self::getObject($where,"*","sort ASC");
+		$result=self::getObject($where,"*","sort ASC,id ASC");
 		foreach ($result as $key => $value) {
 			$arr[$value['id']]=$value->toArray();
 		}
@@ -89,6 +93,11 @@ class Menu extends AdminBase
 			$privs=Core::loadModel("User")->getObject(['id'=>\think\Session::get("backend_author_sign")['userid']],"id,privs")[0]->toArray()['privs'];
 			if($privs){
 				$privs=explode(",", $privs);
+				foreach ($privs as $key => $value) {
+					$this->parentids[]=$value;
+					$this->get_parent_ids($value);
+				}
+				$privs=array_unique($this->parentids);
 				foreach ($arr as $key => $value) {
 					if(!in_array($value['id'], $privs)){
 						unset($arr[$key]);
@@ -99,5 +108,19 @@ class Menu extends AdminBase
 			}
 		}
 		return $returnarr?$arr:Data::toTreeArrray($arr);
+	}
+
+	public function get_parent_ids($parentid){
+		if($parentid>0){
+			$result=self::getOneObject(['id'=>$parentid]);
+			if($result){
+				$this->parentids[]=$result['parentid'];
+				$this->get_parent_ids($result['parentid']);
+			}else{
+				return $this->parentids;
+			}
+		}else{
+			return $this->parentids;
+		}
 	}
 }

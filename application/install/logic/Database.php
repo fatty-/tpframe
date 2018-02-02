@@ -19,7 +19,7 @@ class Database extends LogicBase
            $result=$conn->query("show databases;");
            return ['errcode'=>0,"errmsg"=>"连接成功"];
         }catch (\Exception $e){
-            return ['errcode'=>1,"errmsg"=>"用户名或密码错误"];
+            return ['errcode'=>1,"errmsg"=>"用户名或密码错误".$e->getMessage()];
         }
 	}
 	public function createDatabase($data){

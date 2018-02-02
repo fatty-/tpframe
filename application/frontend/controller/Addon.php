@@ -14,49 +14,52 @@ use tpfcore\helpers\StringHelper;
  */
 class Addon extends FrontendBase
 {
-
-
+    
     /**
      * 插件基类构造方法
+     c：controller    控制器
+     a：action        操作
+     m：model         模块
      */
+    // http://backend.tpframe.com/addon/execute?h=robot&c=category&a=index&m=application
     public function _initialize()
     {
         parent::_initialize();
+        
+        if(!array_key_exists("m", $this->param)){
 
-        if(!array_key_exists("c", $this->param) || !array_key_exists("a", $this->param) || !array_key_exists("m", $this->param)){
-
-            $this->jump([RESULT_ERROR,"你传递的参数有误",null]);            
+            $this->jump([RESULT_ERROR,"该插件模块不存在",null]);            
 
         }
-        $addon_name=ucfirst($this->param['c']);
+        $module=$this->param['m'];
 
-        $cate_name=$this->param['m'];
+        if(!Core::loadModel("Addon")->isInstall(['module'=>$module,'status'=>1])){
 
-        if(!Core::loadModel("Addon")->isInstall(['name'=>$addon_name,'type'=>$cate_name,'status'=>1])){
-
-            $this->jump([RESULT_ERROR,"请先安装模块{$cate_name}下的{$addon_name}插件后再试",null]);
+            $this->jump([RESULT_ERROR,"请先安装或启用模块{$module}插件后再试",null]);
             
         }
     }
 
     /**
      * 执行插件控制器
-     * catename  插件分类  控制模块  参数m
-     * addon_name  插件名  根据控制器来确定
-     * controller_name  控制器名  参数c来确定
-     * action_name  控制器里-操作名  参数a
+     *  控制模块  参数m
+     *  控制器名  参数c来确定
+     *  控制器里-操作名  参数a
+
      * http://www.tpframe.com/addon/execute?c=qq&a=callback&m=login
      */
-    public function execute($c = null, $a = null , $m = '')
+    public function execute($c = null, $a = null , $m = '' )
     {
 
-        $controller_name=StringHelper::s_format_class($c);
+        $controller_name=isset($this->param['c'])?StringHelper::s_format_class($c):StringHelper::s_format_class($m);
 
-        $class_path = "\\".ADDON_DIR_NAME."\\$m\\".$c."\controller\\".$controller_name;
+        $action=isset($this->param['a'])?$a:"index";
 
+        $class_path = "\\".ADDON_DIR_NAME."\\".$m."\\controller\\".$controller_name;
+ 
         $controller = new $class_path();
 
-        $result = $controller->$a();
+        $result = $controller->$action();
 
         if(is_array($result)){
 

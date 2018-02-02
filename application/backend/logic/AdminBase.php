@@ -29,8 +29,8 @@ class AdminBase extends LogicBase
 		extract($data);
 		$result=Core::loadModel($table)->saveObject([$key=>$keyval,$colum=>$columval]);
 		if($result){
-			return [0, '操作成功',null];
+			return [1, '操作成功',null];
 		}
-		return [-1, '操作失败',null];
+		return [0, '操作失败',null];
 	}
 }

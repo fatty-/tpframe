@@ -106,15 +106,14 @@ if(window.top.length>0){
               {volist name="$child.son" id="son"}
                 <li> <a href="javascript:openapp('{:url($son.controller.'/'.$son.action,$son.urlext)}','{$son.id}Admin','{$son.name}',true);"> &nbsp;<i class="fa fa-angle-double-right"></i> <span class="menu-text"> {$son.name} </span> </a> </li>
               {/volist}
-
               </ul>
               {/notempty}
             </li>
             {/volist}
           </ul>
+        {/notempty}
         </li>
       </ul>
-      {/notempty}
       {/volist}
     </div>
   </div>
@@ -195,7 +194,7 @@ if(window.top.length>0){
         $(".main-nav li").each(function(k,v){
           var key=$(this).attr("key");
           if($(".nav-item"+key).length==0){
-            //$(this).remove();
+            $(this).remove();
           }
           $(this).show();
         });
