@@ -7,6 +7,7 @@ namespace app\common\logic;
 
 use \tpfcore\Core;
 use think\Validate;
+use think\Db;
 /**
  * Admin基础逻辑
  */
@@ -26,7 +27,7 @@ class ControllerBase extends LogicBase
 		    return [-4,$validate->getError(),null];
 		}
 		extract($data);
-		$result=Core::loadModel($table)->saveObject([$key=>$keyval,$colum=>$columval]);
+		$result=Db::name($table)->update([$key=>$keyval,$colum=>$columval]);
 		if($result){
 			return [1, '操作成功',null];
 		}

@@ -254,7 +254,7 @@ class Core{
 			    }
 			}
 
-			if(class_exists("addon\cms\logic\Category")){
+			if(class_exists($model_object)){
 
 				return new $model_object();
 
