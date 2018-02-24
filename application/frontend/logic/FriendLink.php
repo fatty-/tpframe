@@ -16,7 +16,7 @@ use \tpfcore\Core;
 /**
  *  友情链接逻辑
  */
-class FrinendLink extends FrontendBase
+class FriendLink extends FrontendBase
 {
 	public function getFriendLink($data){
 		return self::getList($data);
