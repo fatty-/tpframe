@@ -39,6 +39,7 @@ use tpfcore\Core;
     .table-list {
         margin-bottom: 0px;
     }
+    .status{cursor: pointer;}
     </style>
     <!--[if IE 7]>
       <link rel="stylesheet" href="__THEMES__/css/font-awesome-ie7.min.css">
@@ -65,7 +66,7 @@ use tpfcore\Core;
             $.ajax({
                 type:"post",
                 dataType:"json",
-                url:"{:url('Links/ajaxdata')}",
+                url:"{:Core::addons_url('FriendLink://FriendLink/ajaxdata')}",
                 data:{"table":table,"colum":colum,"columval":newval,"key":key,"keyval":keyval},
                 beforeSend:function(obj){
                     $this.attr("src","/data/assets/images/btn_loading.gif");
@@ -141,11 +142,11 @@ use tpfcore\Core;
                       <td>
                           {eq name='vo.is_install' value='1'}
                               {eq name="vo.ext" value="1"}
-                              <a class="btn btn-info confirm ajax-get"  href='{:Core::addons_url($vo['name']."://".$vo['handle']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq} 
+                              <a class="btn btn-info confirm ajax-get"  href='{:Core::addons_url($vo['class_name']."://".$vo['handle']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq} 
                               {neq name="vo.type" value="behavior"}
                               <a class="btn btn-primary confirm ajax-get"  href='{$vo.manager.url|default=''}'><i class="fa fa-remove"></i> {$vo.manager.text} </a>{/neq}
                               <a class="btn btn-warning confirm ajax-get"  href="{:url('addonUninstall', array('name' => $vo['name']))}"><i class="fa fa-remove"></i> 卸 载</a>
-                              <a class="btn-link confirm ajax-get"  href="{:Core::addons_url($vo['name']."://".$vo['handle']."/doc")}">使用说明 </a>
+                              <a class="btn-link confirm ajax-get"  href="{:Core::addons_url($vo['class_name']."://".$vo['handle']."/doc")}">使用说明 </a>
                              {else/}
                               <a class="btn confirm ajax-get"  href="{:url('addonInstall', array('name' => $vo['name']))}"><i class="fa fa-refresh"></i> 安 装</a>
                           {/eq}

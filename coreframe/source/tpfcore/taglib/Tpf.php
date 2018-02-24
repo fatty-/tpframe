@@ -38,7 +38,7 @@ class Tpf extends Taglib
         $key    = isset($tag['key'])?$tag['key']:'key';
         $order  = isset($tag['order'])?$tag['order']:'sort ASC';
         $parse  = '<?php ';
-        $parse .= '$tpflist =  Core::loadModel("Links")->getLinks(["where"=>["status"=>1],"order"=>"'.$order.'","limit"=>'.$num.']); ';
+        $parse .= '$tpflist =  Core::loadModel("FriendLink")->getFriendLink(["where"=>["status"=>1],"order"=>"'.$order.'","limit"=>'.$num.']); ';
         $parse .= 'foreach($tpflist as $'.$key.'=>$'.$id.'){';
         $parse .= '?>';
         $parse .= $content;

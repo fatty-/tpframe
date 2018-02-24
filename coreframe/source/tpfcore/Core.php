@@ -155,11 +155,8 @@ class Core{
 	 */
 	final static function get_addon_class($catename = '', $name = '')
 	{
-	    //$lower_name = strtolower($name);
 
 	    $addonClass=StringHelper::s_format_class($catename);
-	    
-	    //$class = ADDON_DIR_NAME."\\".$catename."\\{$lower_name}\\{$name}";
 
 	    $class = ADDON_DIR_NAME."\\{$catename}\\{$addonClass}";
 	    
@@ -176,7 +173,7 @@ class Core{
 	}
 	/**
 	 * 插件显示内容里生成访问插件的url
-	 * @param string $url url
+	 * @param string $url url  插件名类名://控制器/方法  eg:FriendLink://FriendLink/index
 	 * @param array $param 参数
 	 * @author <510974211@qq.com>
 	 */
@@ -193,8 +190,8 @@ class Core{
 
 	    /* 基础参数 */
 	    $params_array = array(
-	        'm'     => strtolower($addons),
-	        'c' 	=> strtolower($controller),
+	        'm'     => StringHelper::s_format_underline($addons),
+	        'c' 	=> StringHelper::s_format_underline($controller),
 	        'a'     => strtolower(substr($action, 1)),
 	    );
 

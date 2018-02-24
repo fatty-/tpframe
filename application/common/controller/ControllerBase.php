@@ -8,6 +8,7 @@ namespace app\common\controller;
 
 use think\Controller;
 use tpfcore\helpers\Json;
+use tpfcore\Core;
 /**
  * 系统通用控制器基类
  */
@@ -120,5 +121,9 @@ class ControllerBase extends Controller
         is_array($status) && list($status, $message, $url) = $status;
         
         die($this->fetch("public/jump",['title'=>$message,'url'=>$url]));
+    }
+
+    public function ajaxdata(){
+        IS_AJAX && $this->jump(Core::loadModel("ControllerBase")->ajaxdata($this->param));
     }
 }

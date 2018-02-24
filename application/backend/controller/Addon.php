@@ -48,8 +48,8 @@ class Addon extends AdminBase
      * http://www.tpframe.com/addon/execute?c=qq&a=callback&m=login
      */
     public function execute($c = null, $a = null , $m = '' )
-    {
-        $this->checkInstall();
+    {   
+        IS_AJAX || $this->checkInstall();
 
         $controller_name=isset($this->param['c'])?StringHelper::s_format_class($c):StringHelper::s_format_class($m);
 
@@ -77,7 +77,7 @@ class Addon extends AdminBase
         try{
             $strtolower_name = strtolower($name);
 
-            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".$name;
+            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".StringHelper::s_format_class($name);
 
             Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'install');
 
@@ -110,7 +110,7 @@ class Addon extends AdminBase
 
             $strtolower_name = strtolower($name);
 
-            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".$name;
+            $class_path = "\\".ADDON_DIR_NAME."\\".$strtolower_name."\\".StringHelper::s_format_class($name);
 
             Core::loadModel($this->name)->executeSql($catename , $strtolower_name, 'uninstall');
 

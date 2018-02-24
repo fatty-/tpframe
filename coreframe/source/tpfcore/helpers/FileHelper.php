@@ -55,11 +55,11 @@ class FileHelper extends BaseFileHelper
 	    if (false != ($handle = opendir($dir_name))) {
 	        
 	        $i = 0;
-	        
+
 	        while (false !== ($file = readdir($handle))) {
-	            
-	            if ($file != "." && $file != ".."&&!strpos($file,".")) {
-	                
+
+	            if ($file != "." && $file != ".." && strpos($file,".")===false) {
+
 	                $dir_array[$i] = $file;
 	                
 	                $i++;

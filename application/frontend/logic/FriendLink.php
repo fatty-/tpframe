@@ -14,11 +14,11 @@ use \tpfcore\util\Tree;
 use \tpfcore\util\Data;
 use \tpfcore\Core;
 /**
- *  导航逻辑
+ *  友情链接逻辑
  */
-class Links extends FrontendBase
+class FrinendLink extends FrontendBase
 {
-	public function getLinks($data){
+	public function getFriendLink($data){
 		return self::getList($data);
 	}
 }

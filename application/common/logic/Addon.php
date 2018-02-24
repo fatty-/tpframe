@@ -37,6 +37,8 @@ class Addon extends LogicBase
 
             $addon_info['id'] = empty($info) ? 0 : $info['id'];
 
+            $addon_info['class_name']=StringHelper::s_format_class($addon_info['name']);
+
             $list[] = $addon_info;
 
         }
