@@ -144,7 +144,7 @@ use tpfcore\Core;
                               {eq name="vo.ext" value="1"}
                               <a class="btn btn-info confirm ajax-get"  href='{:Core::addons_url($vo['class_name']."://".$vo['handle']."/config")}'><i class="fa fa-remove"></i> 配置 </a>{/eq} 
                               {neq name="vo.type" value="behavior"}
-                              <a class="btn btn-primary confirm ajax-get"  href='{$vo.manager.url|default=''}'><i class="fa fa-remove"></i> {$vo.manager.text} </a>{/neq}
+                              <a class="btn btn-primary confirm ajax-get"  href='{$vo.manager.url|default=''}'><i class="fa"></i> {$vo.manager.text} </a>{/neq}
                               <a class="btn btn-warning confirm ajax-get"  href="{:url('addonUninstall', array('name' => $vo['name']))}"><i class="fa fa-remove"></i> 卸 载</a>
                               <a class="btn-link confirm ajax-get"  href="{:Core::addons_url($vo['class_name']."://".$vo['handle']."/doc")}">使用说明 </a>
                              {else/}
