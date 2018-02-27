@@ -11,7 +11,10 @@ use \tpfcore\Core;
 class Slide extends FrontendBase
 {
 	public function getSlide(){
-		$slidecatsql=Core::loadModel("SlideCat")->field("cid")->where(['cat_idname'=>"banner"])->buildSql();
-		return self::getObject("slide_cid=$slidecatsql","slide_pic,slide_url");
+		$slidecatsql=Core::loadModel("SlideCat")->field("id")->where(['sign'=>"banner"])->buildSql();
+		return self::getObject("cid=$slidecatsql","pic,url");
+	}
+	public function getTpfSlide($data){
+		return self::getList($data);
 	}
 }

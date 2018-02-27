@@ -3778,17 +3778,17 @@ CREATE TABLE `tpf_posts` (
 -- ----------------------------
 -- Records of tpf_posts
 -- ----------------------------
-INSERT INTO `tpf_posts` VALUES ('1', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1499913494', '1497156908', '', '本站', 'tpframe', '23', '0', '1', '0', '0', '0', '1', '0', '1', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('2', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '16', '0', '1', '1', '1', '0', '0', '1', '2', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('3', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '39', '0', '2', '0', '0', '0', '0', '0', '2', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('4', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '9', '0', '1', '1', '1', '0', '0', '1', '5', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('5', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1497152844', '1497148729', null, '本站', 'tpframe', '2', '0', '1', '1', '1', '0', '0', '0', '4', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('6', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '7', '0', '1', '1', '1', '0', '0', '0', '2', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('7', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034964', '1497148729', null, '本站', 'tpframe', '4', '0', '1', '1', '1', '0', '0', '0', '4', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('8', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498103128', '1497148729', null, '本站', 'tpframe', '2', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('9', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498108591', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('10', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114235', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
-INSERT INTO `tpf_posts` VALUES ('11', 'TPFrame 正式上线', '<p>\r\n	<img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114280', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('1', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1499913494', '1497156908', '', '本站', 'tpframe', '23', '0', '1', '0', '0', '0', '1', '0', '1', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('2', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '16', '0', '1', '1', '1', '0', '0', '1', '2', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('3', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '39', '0', '2', '0', '0', '0', '0', '0', '2', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('4', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '9', '0', '1', '1', '1', '0', '0', '1', '5', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('5', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1497152844', '1497148729', null, '本站', 'tpframe', '2', '0', '1', '1', '1', '0', '0', '0', '4', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('6', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034319', '1497148729', null, '本站', 'tpframe', '7', '0', '1', '1', '1', '0', '0', '0', '2', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('7', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498034964', '1497148729', null, '本站', 'tpframe', '4', '0', '1', '1', '1', '0', '0', '0', '4', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('8', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498103128', '1497148729', null, '本站', 'tpframe', '2', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('9', 'TPFrame 正式上线', '<p>\r\n <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498108591', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('10', 'TPFrame 正式上线', '<p>\r\n  <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114235', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
+INSERT INTO `tpf_posts` VALUES ('11', 'TPFrame 正式上线', '<p>\r\n  <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114280', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
 INSERT INTO `tpf_posts` VALUES ('12', 'TPFrame 正式上线', '<p>\r\n  <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114280', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
 INSERT INTO `tpf_posts` VALUES ('13', 'TPFrame 正式上线', '<p>\r\n  <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114280', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
 INSERT INTO `tpf_posts` VALUES ('14', 'TPFrame 正式上线', '<p>\r\n  <img src=\"/data/uploads/20170713/128ee9657bf2e2b09c89ddca4d29e4be.jpg\" alt=\"\" /><br />\r\nTPFrame 是一款新起的专门为项目速成的PHP框架，基于thinkphp5.0，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装', '1498114280', '1497148729', null, '本站', 'tpframe', '0', '0', '1', '1', '1', '0', '0', '0', '7', '0', '0');
@@ -3827,18 +3827,17 @@ CREATE TABLE `tpf_setting` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tpf_slide`;
 CREATE TABLE `tpf_slide` (
-  `slide_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `slide_cid` int(11) NOT NULL COMMENT '幻灯片分类 id',
-  `slide_name` varchar(255) NOT NULL COMMENT '幻灯片名称',
-  `slide_pic` varchar(255) DEFAULT NULL COMMENT '幻灯片图片',
-  `slide_url` varchar(255) DEFAULT NULL COMMENT '幻灯片链接',
-  `slide_des` varchar(255) DEFAULT NULL COMMENT '幻灯片描述',
-  `slide_content` text COMMENT '幻灯片内容',
-  `slide_status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1显示，0不显示',
-  `listorder` int(10) DEFAULT '0' COMMENT '排序',
-  PRIMARY KEY (`slide_id`),
-  KEY `slide_cid` (`slide_cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL COMMENT '幻灯片分类 id',
+  `name` varchar(255) NOT NULL COMMENT '幻灯片名称',
+  `pic` varchar(255) DEFAULT NULL COMMENT '幻灯片图片',
+  `url` varchar(255) DEFAULT NULL COMMENT '幻灯片链接',
+  `des` varchar(255) DEFAULT NULL COMMENT '幻灯片描述',
+  `content` text COMMENT '幻灯片内容',
+  `status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1显示，0不显示',
+  `sort` int(10) DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of tpf_slide
@@ -3852,14 +3851,13 @@ INSERT INTO `tpf_slide` VALUES ('3', '1', '3', '/data/uploads/20170713/e261eee1c
 -- ----------------------------
 DROP TABLE IF EXISTS `tpf_slide_cat`;
 CREATE TABLE `tpf_slide_cat` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
-  `cat_name` varchar(255) NOT NULL COMMENT '幻灯片分类',
-  `cat_idname` varchar(255) NOT NULL COMMENT '幻灯片分类标识',
-  `cat_remark` text COMMENT '分类备注',
-  `cat_status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1显示，0不显示',
-  PRIMARY KEY (`cid`),
-  KEY `cat_idname` (`cat_idname`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片分类表';
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL COMMENT '幻灯片分类名称',
+  `sign` varchar(255) NOT NULL COMMENT '幻灯片分类标识',
+  `remark` text COMMENT '分类备注',
+  `status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1显示，0不显示',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='幻灯片分类表';
 
 -- ----------------------------
 -- Records of tpf_slide_cat
