@@ -209,7 +209,7 @@ class Core{
 			return null;
 		}
 
-		if(is_array($param) && (!array_key_exists("m",$param) || !array_key_exists("c",$param))){
+		if(is_array($param) && !array_key_exists("m",$param)){
 			return null; 
 		}
 
