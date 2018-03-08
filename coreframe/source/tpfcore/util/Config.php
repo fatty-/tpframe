@@ -16,4 +16,26 @@ class Config{
 		file_put_contents($file, "<?php \nreturn ".var_export($config,true).";");
 
 	}
+	/*
+		返回某个数组键的值，支持aa.bb.cc
+	*/
+	public static function getConfigByKey($file,$key){
+
+		$cache=$config=require($file);
+
+		if(strpos($key,".")!==false){
+
+			$arr=explode(".", $key);
+
+			foreach ($arr as $key => $value) {
+
+				$cache=$cache[$value];
+
+			}
+
+			return $cache;
+			
+		}
+		return $config[$key];
+	}
 }
