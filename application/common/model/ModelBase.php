@@ -202,7 +202,7 @@ class ModelBase extends Model
     * @param mixed $data   数据集
     * @return mixed
     */
-    final protected function getObject($where = [], $field = true, $order = '', $paginate = array('rows' => null, 'simple' => false, 'config' => []), $join = array('join' => null, 'condition' => null, 'type' => 'INNER'), $group = array('group' => '', 'having' => ''), $limit = null, $data = null)
+    final protected function getObject($where = [], $field = true, $order = '', $paginate = array('rows' => null, 'simple' => false, 'config' => []), $join = array('join' => null, 'condition' => null, 'type' => 'INNER'), $group = array('group' => '', 'having' => ''), $limit = null, $data = null,$expire=0)
     {
         if(isset($where['page'])) unset($where['page']);
 
@@ -263,7 +263,7 @@ class ModelBase extends Model
         } else {
             $result_data = !empty($paginate['rows']) ? self::$ob_query->paginate($paginate['rows'], $paginate['simple'], $paginate['config']) : self::$ob_query->select($data);
 
-            \think\Cache::tag($cache_tag)->set($cache_key, serialize($result_data)) && Cache::set_cache_tag($cache_tag);
+            HTML_CACHE_ON && \think\Cache::tag($cache_tag)->set($cache_key, serialize($result_data),$expire) && Cache::set_cache_tag($cache_tag,$expire);
             
             return $result_data;
         }
@@ -285,7 +285,8 @@ class ModelBase extends Model
                     "join"      =>['join' => null, 'condition' => null, 'type' => 'INNER'],
                     "group"     =>['group' => '', 'having' => ''],
                     "limit" =>null,
-                    "data"  =>null
+                    "data"  =>null,
+                    "expire"=>0
         ]; 
         $param=StringHelper::parseStrTable($param);
 
@@ -342,7 +343,7 @@ class ModelBase extends Model
         } else {
             $result_data = !empty($paginate['rows']) ? self::$ob_query->paginate($paginate['rows'], $paginate['simple'], $paginate['config']) : self::$ob_query->select($data);
 
-            \think\Cache::tag($cache_tag)->set($cache_key, serialize($result_data)) && Cache::set_cache_tag($cache_tag);
+            HTML_CACHE_ON && \think\Cache::tag($cache_tag)->set($cache_key, serialize($result_data),$expire) && Cache::set_cache_tag($cache_tag,$expire);
             
             return $result_data;
         }

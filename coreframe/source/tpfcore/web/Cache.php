@@ -75,14 +75,14 @@ class Cache extends Object{
 	/**
 	 * 写入缓存标签
 	 */
-	static final function set_cache_tag($tag = '')
+	static final function set_cache_tag($tag = '',$expire=0)
 	{
 	    
 	    $cache_info_tags = cache(CACHE_TAGS_NAME);
 	    
 	    $cache_info_tags[] = $tag;
 
-	    HTML_CACHE_ON && cache(CACHE_TAGS_NAME, $cache_info_tags, 0);
+	    cache(CACHE_TAGS_NAME, $cache_info_tags, $expire);
 	}
 
 	/**
