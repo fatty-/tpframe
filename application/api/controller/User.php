@@ -3,14 +3,12 @@
 // | Author: yaoyihong <510974211@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\api\service;
+namespace app\api\controller;
+use \tpfcore\Core;
 
-use app\common\service\ServiceBase;
-
-/**
- * Api基础服务
- */
-class ApiServiceBase extends ServiceBase
+class User extends ApiBase
 {
-
+	public function login(){
+		$this->jump(Core::loadModel($this->name)->login($this->param));
+	}
 }

@@ -9,12 +9,14 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use \think\Request;
-$pathinfo=strtolower(Request::instance()->pathinfo());
-$pathinfo=$pathinfo=='backend'?$pathinfo.'/':$pathinfo;
-if(!preg_match('/^backend\//',$pathinfo) && !preg_match('/^frontend\//',$pathinfo) && file_exists("data/install.lock")){
-	\think\Route::bind('frontend');
-};
 return [
+	'__domain__' => [
+		'www'=> 'frontend',
+		'backend' => 'backend',
+        'api' => 'api',
+		// 泛域名规则建议在最后定义
+		'*' => 'frontend',
+	],
     '__pattern__' => [
         'name' => '\w+',
     ],

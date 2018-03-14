@@ -124,7 +124,7 @@ class ControllerBase extends Controller
     }
     
     public function ajaxdata(){
-        IS_AJAX && $this->jump(Core::loadModel("ControllerBase")->ajaxdata($this->param));
+        IS_AJAX && $this->jump(Core::loadModel("LogicBase")->ajaxdata($this->param));
     }
     /*
         上传图片(单张图片)
