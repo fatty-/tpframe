@@ -267,9 +267,9 @@ class Core{
 
 		$module=$param['m'];
 
-		$logic_name=isset($param['l']) && $param['l'] ? $param['l']:StringHelper::s_format_class($param['m']);
+		$logic_name=isset($param['c']) && $param['c'] ? $param['c']:$param['m'];
 
-		$logincModel="\\".ADDON_DIR_NAME."\\".$module."\\logic\\".$logic_name;
+		$logincModel="\\".ADDON_DIR_NAME."\\".$module."\\logic\\".StringHelper::s_format_class($logic_name);
 
 		return new $logincModel();
 	}
