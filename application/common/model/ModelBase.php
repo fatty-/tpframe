@@ -142,9 +142,9 @@ class ModelBase extends Model
      * @param string $is_true 是否真实删除
      * @return boolean
      */
-    final protected function deleteObject($where = [], $is_true = false)
+    final protected function deleteObject($where = [], $is_true = false , $column = null)
     { 
-        return $is_true ? $this->where($where)->delete() : $this->setFieldValue($where, DATA_STATUS, DATA_DELETE);
+        return $is_true ? $this->where($where)->delete() : $this->setFieldValue($where, is_null($column)?DATA_STATUS:$column, DATA_DELETE);
     }
     
     /**
