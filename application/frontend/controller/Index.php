@@ -13,10 +13,12 @@ namespace app\frontend\controller;
 use \tpfcore\Core;
 use app\frontend\model\SlideCat;
 use app\frontend\model\Slide;
+use think\Cookie;
 class Index extends FrontendBase
 {
     public function index()
     {
+        
     	return $this->fetch("index");
     }
     public function cases()
@@ -28,5 +30,8 @@ class Index extends FrontendBase
     public function about()
     {
     	return $this->fetch("about");
+    }
+    public function changlang(){
+       Cookie::set("think_var",$this->param['lang']);
     }
 }

@@ -41,7 +41,7 @@ return [
     // 默认模板文件中路径
     'default_themes_path'     => 'theme/frontend',
     // 是否开启多语言
-    'lang_switch_on'         => false,
+    'lang_switch_on'         => true,
     // 默认全局过滤方法 用逗号分隔多个
     'default_filter'         => '',
     // 默认语言

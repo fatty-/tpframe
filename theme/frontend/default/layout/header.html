@@ -46,6 +46,21 @@ use tpfcore\helpers\StringHelper;
         padding-top: 80px;
     }
     </style>
+    <script type="text/javascript">
+    $(function(){
+        $("#changLang").change(function(){
+            var lang=$(this).val();
+            $.ajax({
+                url:'{:url("index/changlang")}',
+                data:{"lang":lang},
+                type:"POST",
+                success:function(data){
+                    location.reload();
+                }
+            });
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -63,6 +78,12 @@ use tpfcore\helpers\StringHelper;
                         {volist name=':Core::loadAction("Nav/getNav")' id="vo"}
                         <li><a href="{$vo.href}" target="{$vo.target}">{$vo.label}</a></li>
                         {/volist}
+                        <li>
+                            <select name="lang" id="changLang">
+                                <option value="zh-cn" {eq name=":lang('lang_id')" value="0"}selected="selected"{/eq}>中文</option>
+                                <option value="en-us" {eq name=":lang('lang_id')" value="1"}selected="selected"{/eq}>英文</option>
+                            </select>
+                        </li>
                     </ul>
                 </div>
             </nav>

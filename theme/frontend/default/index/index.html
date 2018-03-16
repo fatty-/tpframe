@@ -57,41 +57,41 @@
     <!-- 设计流程 -->
     <div class="container bgwhite clearfix p20 pB40">
         <div class="con_rank_title">
-            <h2>项目开发流程</h2>
-            <h4>APP/PHP程序设计</h4>
+            <h2>{:lang("project development process")}</h2>
+            <h4>APP/PHP{:lang("program design")}</h4>
         </div>
         <ul class="pslist">
             <li>
                 <div>
                     <i class="fa tus fa-user xh-flipInX"></i>
                 </div>
-                <p class="text-center text">需求沟通,草图绘制</p>
+                <p class="text-center text">{:lang("demand communication, sketching")}</p>
             </li>
             <li>
                 <div>
                     <i class="fa fa-laptop tus xh-flipInX"></i>
                 </div>
-                <p class="text-center text">用户交互,高保真原型</p>
+                <p class="text-center text">{:lang("user interaction, high fidelity prototype")}</p>
             </li>
             <li>
                 <div>
                     <i class="fa tus fa-eye xh-flipInX"></i>
                 </div>
-                <p class="text-center text">视觉和UI设计</p>
+                <p class="text-center text">{:lang("vision and UI design")}</p>
             </li>
             <li>
                 <div>
                     <i class="fa fa-apple tus xh-flipInX"></i>
                 </div>
-                <p class="text-center text">前端开发,后端开发</p>
+                <p class="text-center text">{:lang("frontend and backend development")}</p>
             </li>
         </ul>
     </div>
     <!-- 案例 -->
     <div class="mycontainer bgwhite clearfix p20 pB40" style="margin-top: 20px;">
         <div class="con_rank_title">
-            <h2>案例展示</h2>
-            <h4>TPFrame经典案例</h4>
+            <h2>{:lang("case study")}</h2>
+            <h4>TPFrame {:lang("classic case")}</h4>
         </div>
         <section class="home-case">
             <ul class="list" id="home-showbox">
@@ -102,32 +102,30 @@
                         <div class="overlay"></div>
                         <div class="content xh-flipInY">
                             <h3>{$vo.title|StringHelper::msubstr=0,10}</h3>
-                            <p>系统设计，系统开发，二次开发</p>
+                            <p>{:lang("system design, system development, two development")}</p>
                         </div>
                     </div>
                 </li>
                 {/volist}
             </ul>
             <div class="p20 text-center">
-                <a href="{:url('index/cases',['cid'=>7])}" class="more2 xh-zoomIn">全部案例</a>
+                <a href="{:url('index/cases',['cid'=>7])}" class="more2 xh-zoomIn">{:lang("all cases")}</a>
             </div>
         </section>
     </div>
     <!-- about -->
     <div class="homeabout">
-        <h4 class="title">TPFrame简介</h4>
-        <p class="text">TPFrame 是一款新起的为项目快速速成的PHP框架，基于thinkphp5.0开发，程序完全开源，可进行任何的二次开发，废弃thinkphp3.2函数编程模式，数据模式全部采用对象封装，四层框架模
-
-式，让你的程序更加解耦合，写少量的代码，做更多的事情，真正提升企业价值的开源框架。</p>
+        <h4 class="title">TPFrame{:lang("brief introduction")}</h4>
+        <p class="text">{:lang("TPFrame PHP is a new framework for the project quickly crash, based on thinkphp5.0 development, the program is fully open source, can be two times the development of any of the abandoned thinkphp3.2 function programming model, data model with object encapsulation, four layer framework, make your program more decouple, write less code, do more the real thing, open source framework to enhance corporate value.")}</p>
         <p class="text-center">
-            <a href="//shang.qq.com/wpa/qunwpa?idkey=2902b09cc5514af8485c492180d2d6a8c0c602977a33ee6a51bc311a7429a42a" class="bts" target="_blank">加入QQ群交流</a>
+            <a href="//shang.qq.com/wpa/qunwpa?idkey=2902b09cc5514af8485c492180d2d6a8c0c602977a33ee6a51bc311a7429a42a" class="bts" target="_blank">{:lang("Join QQ group communication")}</a>
         </p>
     </div>
     <!-- blog -->
     <div class="mycontainer bgwhite clearfix p20 pB40" style="margin-top: 20px;">
         <div class="con_rank_title">
-            <h2>博客</h2>
-            <h4>PHP行业资讯</h4>
+            <h2>{:lang("blog")}</h2>
+            <h4>PHP{:lang("industry information")}</h4>
         </div>
         <div class="bloghome mT20">
             {volist name=':Core::loadAction("Posts/getPosts",["limit"=>3,"where"=>"cateid=2 or cateid=3 or cateid=4 or cateid=5 or cateid=6"])' id="vo"}
@@ -149,6 +147,6 @@
             {/volist}
         </div>
         <div class="p20 text-center">
-            <a href="{:url('posts/index',['cid'=>1])}" class="more2 xh-zoomIn" target="_blank">全部博客</a>
+            <a href="{:url('posts/index',['cid'=>1])}" class="more2 xh-zoomIn" target="_blank">{:lang("all blog")}</a>
         </div>
     </div>

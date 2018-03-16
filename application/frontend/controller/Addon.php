@@ -21,7 +21,6 @@ class Addon extends FrontendBase
      a：action        操作
      m：model         模块
      */
-    // http://backend.tpframe.com/addon/execute?h=robot&c=category&a=index&m=application
     public function _initialize()
     {
         parent::_initialize();
