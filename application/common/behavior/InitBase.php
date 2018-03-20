@@ -168,7 +168,7 @@ class InitBase
         define('DATA_ENCRYPT_KEY', config('database.DATA_ENCRYPT_KEY')?config('database.DATA_ENCRYPT_KEY'):'!hg&HW14*WF5^%$3NHK)EDh*h#@s(01w-Eftpframe@.com');
 
         // 系统当前版本
-        define('TPFRAME_VERSION', config('database.TPFRAME_VERSION')?config('database.TPFRAME_VERSION'):'TPFrame v1.0');
+        define('TPFRAME_VERSION', config('database.TPFRAME_VERSION')?config('database.TPFRAME_VERSION'):'TPFrame v2.1');
         
     }
     
