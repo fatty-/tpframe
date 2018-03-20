@@ -8,7 +8,7 @@ use \tpfcore\Core;
 /**
  * 文章服务类
  */
-class Posts extends FrontendServiceBase
+class Posts extends FrontendBase
 {
 	public function listPosts($data,$limit=DB_LIST_ROWS){
 		if(empty($data["cid"])){

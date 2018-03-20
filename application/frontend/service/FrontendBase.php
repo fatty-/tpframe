@@ -16,7 +16,7 @@ use app\common\service\ServiceBase;
 /**
  * 基础服务
  */
-class FrontendServiceBase extends ServiceBase
+class FrontendBase extends ServiceBase
 {
 
 }
