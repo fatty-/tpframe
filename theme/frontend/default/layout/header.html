@@ -76,7 +76,7 @@ use tpfcore\helpers\StringHelper;
                     <ul class="navbar-nav navbar-right">
                         <li><a href="/">首页</a></li>
                         {volist name=':Core::loadAction("Nav/getNav")' id="vo"}
-                        <li><a href="{$vo.href}" target="{$vo.target}">{$vo.label}</a></li>
+                        <li><a href="{:url($vo.href)}" target="{$vo.target}">{$vo.label}</a></li>
                         {/volist}
                         <li>
                             <select name="lang" id="changLang">

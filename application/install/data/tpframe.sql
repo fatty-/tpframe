@@ -3727,9 +3727,9 @@ CREATE TABLE `tpf_nav` (
 -- ----------------------------
 -- Records of tpf_nav
 -- ----------------------------
-INSERT INTO `tpf_nav` VALUES ('1', '0', '案例', '_self', 'href_text', '/index/cases', '', '0', '0', '0', '1');
-INSERT INTO `tpf_nav` VALUES ('2', '0', '博客', '_self', 'href_text', '/index/news', '', '0', '0', '0', '1');
-INSERT INTO `tpf_nav` VALUES ('3', '0', '关于', '_self', 'href_text', '/index/about', '', '1', '0', '0', '1');
+INSERT INTO `tpf_nav` VALUES ('1', '0', '案例', '_self', 'href_text', 'Index/cases', '', '0', '0', '0', '1');
+INSERT INTO `tpf_nav` VALUES ('2', '0', '博客', '_self', 'href_text', 'Index/news', '', '0', '0', '0', '1');
+INSERT INTO `tpf_nav` VALUES ('3', '0', '关于', '_self', 'href_text', 'Index/about', '', '1', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for tpf_nav_cat

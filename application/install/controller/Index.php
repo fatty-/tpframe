@@ -15,8 +15,8 @@ class Index extends ControllerBase {
         }
     }
     //首页
-	public function index() {
-    	return $this->fetch(":index");
+    public function index() {
+        return $this->fetch(":index");
     }
     public function step1() {
         $this->redirect(SITE_PATH."/install/");
@@ -86,12 +86,12 @@ class Index extends ControllerBase {
             $err++;
         }
 
-        /*if (extension_loaded('fileinfo')) {
+        if (extension_loaded('fileinfo')) {
             $data['fileinfo'] = '<i class="fa fa-check correct"></i> 已开启';
         } else {
             $data['fileinfo'] = '<i class="fa fa-remove error"></i> 未开启';
             $err++;
-        }*/
+        }
 
         if (ini_get('file_uploads')) {
             $data['upload_size'] = '<i class="fa fa-check correct"></i> ' . ini_get('upload_max_filesize');
@@ -110,9 +110,6 @@ class Index extends ControllerBase {
             'data',
             'data/assets',
             'data/uploads',
-            'data/runtime',
-            'application/extra',
-            'addon',
         );
         $new_folders=array();
         foreach($folders as $dir){
@@ -134,11 +131,11 @@ class Index extends ControllerBase {
         $data['folders']=$new_folders;
 
         $this->assign($data);
-    	return $this->fetch(":step2");
+        return $this->fetch(":step2");
     }
 
     public function step3(){
-    	return $this->fetch(":step3");
+        return $this->fetch(":step3");
     }
 
     public function step4(){
@@ -161,6 +158,7 @@ class Index extends ControllerBase {
     public function step5(){
         if(session("_install_step")==4){
             @touch('./data/install.lock');
+            $this->curl_post("http://www.tpframe.com/taskmger/install",['domain'=>$_SERVER['HTTP_HOST'],'ip'=>request()->ip()]);
             return $this->fetch(":step5");
         }else{
             $this->error("非法安装！");
@@ -193,5 +191,28 @@ class Index extends ControllerBase {
         return is_dir($path);
     }
 
+    /**
+     * 模拟post进行url请求
+     * @param string $url
+     * @param string $param
+     */
+    private function curl_post($url = '', $param = '') {
+        if (empty($url) || empty($param)) {
+            return false;
+        }
+        
+        $postUrl = $url;
+        $curlPost = $param;
+        $ch = curl_init();//初始化curl
+        curl_setopt($ch, CURLOPT_URL,$postUrl);//抓取指定网页
+        curl_setopt($ch, CURLOPT_HEADER, 0);//设置header
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+        $data = curl_exec($ch);//运行curl
+        curl_close($ch);
+        
+        return $data;
+    }
 }
 
