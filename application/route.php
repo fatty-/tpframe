@@ -10,13 +10,7 @@
 // +----------------------------------------------------------------------
 use \think\Request;
 return [
-	'__domain__' => [
-		'www'=> 'frontend',
-		'backend' => 'backend',
-        'api' => 'api',
-		// 泛域名规则建议在最后定义
-		'*' => 'frontend',
-	],
+
     '__pattern__' => [
         'name' => '\w+',
     ],
