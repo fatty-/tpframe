@@ -124,7 +124,7 @@ class Database extends LogicBase
 			$username=$data["manager"];
 		    $password='###'.md5($data["manager_pwd"].$data_encrypt_key);
 		    $email=$data["manager_email"];
-		    $create_date=date("Y-m-d h:i:s");
+		    $create_date=time();
 		    $ip=\think\Request::instance()->ip(0,true);
 		    $sql ="
 		    INSERT INTO `{$tablepre}user` 
