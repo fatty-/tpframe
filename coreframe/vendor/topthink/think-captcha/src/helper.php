@@ -46,7 +46,7 @@ function captcha_src($id = "")
  */
 function captcha_img($id = "")
 {
-    return '<img src="' . captcha_src($id) . '" alt="captcha" id="captcha"/>';
+    return '<img src="' . captcha_src($id) . '" alt="captcha" />';
 }
 
 

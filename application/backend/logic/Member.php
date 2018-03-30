@@ -41,14 +41,14 @@ class Member extends AdminBase
         }
 	}
 	public function getInfo($where){
-		return self::getOneObject($where);
+		return Core::loadModel("User")->getOneObject($where);
 	}
 	public function checkPassword($data){
 		return self::getStatistics(['username'=>\think\Session::get("backend_author_sign")['username'],"password"=>"###".md5($data['old_password'].DATA_ENCRYPT_KEY)]);
 	}
 	public function getUserList($where = [], $field = true, $order = '', $is_paginate = true){
 		$paginate_data = $is_paginate ? ['rows' => DB_LIST_ROWS] : false;
-		return self::getObject($where, $field, $order, $paginate_data);
+		return Core::loadModel("User")->getObject($where, $field, $order, $paginate_data);
 	}
 	public function addUser($data){
 		$validate=\think\Loader::validate("Member");
